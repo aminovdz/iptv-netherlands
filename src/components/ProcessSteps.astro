@@ -1,5 +1,5 @@
 ---
-import { ShoppingCart, CreditCard, Tv, ArrowRight, Zap, CheckCircle2 } from 'lucide-astro';
+import { ShoppingCart, CreditCard, Tv, ArrowRight, CheckCircle2 } from 'lucide-astro';
 
 const steps = [
   {
@@ -44,7 +44,7 @@ const steps = [
 
     <!-- Steps Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-      {steps.map((step, index) => {
+      {steps.map((step) => {
         const IconComponent = step.icon;
         return (
           <div class="glass-card rounded-3xl p-8 relative group hover:border-[#7c4ec2]/50 hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between">
@@ -84,7 +84,7 @@ const steps = [
     <!-- Bottom Action Help -->
     <div class="mt-12 text-center">
       <a 
-        href="#pricing" 
+        href="/#pricing" 
         class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold text-sm border border-white/15 transition-all shadow-lg"
       >
         <span>Kies Jouw Abonnement & Start Nu</span>

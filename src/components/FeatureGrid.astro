@@ -8,7 +8,6 @@ import {
   Smartphone, 
   ListOrdered, 
   Headphones, 
-  CreditCard,
   CheckCircle2
 } from 'lucide-astro';
 
@@ -86,7 +85,7 @@ const features = [
 
     <!-- Features 8-Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {features.map((item, index) => {
+      {features.map((item) => {
         const IconComponent = item.icon;
         return (
           <div class="glass-card rounded-2xl p-6 relative group hover:border-[#7c4ec2]/50 hover:bg-white/[0.06] transition-all duration-300 flex flex-col justify-between">

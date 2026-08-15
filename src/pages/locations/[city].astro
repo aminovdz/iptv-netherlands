@@ -20,20 +20,142 @@ import GroupsPopup from '../../components/GroupsPopup.astro';
 import ExitPopup from '../../components/ExitPopup.astro';
 import SocialPopup from '../../components/SocialPopup.astro';
 
+import { MapPin, Signal, Trophy, HelpCircle, CheckCircle2, ChevronDown } from 'lucide-astro';
+
 export const prerender = true;
 
 export async function getStaticPaths() {
   const cities = [
-    { name: 'Amsterdam', slug: 'amsterdam', province: 'Noord-Holland', postalPrefix: '1000 - 1109', latency: '6ms' },
-    { name: 'Rotterdam', slug: 'rotterdam', province: 'Zuid-Holland', postalPrefix: '3000 - 3089', latency: '7ms' },
-    { name: 'Den Haag', slug: 'den-haag', province: 'Zuid-Holland', postalPrefix: '2491 - 2597', latency: '7ms' },
-    { name: 'Utrecht', slug: 'utrecht', province: 'Utrecht', postalPrefix: '3500 - 3585', latency: '6ms' },
-    { name: 'Eindhoven', slug: 'eindhoven', province: 'Noord-Brabant', postalPrefix: '5600 - 5658', latency: '8ms' },
-    { name: 'Groningen', slug: 'groningen', province: 'Groningen', postalPrefix: '9700 - 9747', latency: '10ms' },
-    { name: 'Tilburg', slug: 'tilburg', province: 'Noord-Brabant', postalPrefix: '5000 - 5049', latency: '8ms' },
-    { name: 'Almere', slug: 'almere', province: 'Flevoland', postalPrefix: '1300 - 1363', latency: '7ms' },
-    { name: 'Breda', slug: 'breda', province: 'Noord-Brabant', postalPrefix: '4800 - 4839', latency: '8ms' },
-    { name: 'Nijmegen', slug: 'nijmegen', province: 'Gelderland', postalPrefix: '6500 - 6546', latency: '9ms' }
+    {
+      name: 'Amsterdam',
+      slug: 'amsterdam',
+      province: 'Noord-Holland',
+      postalPrefix: '1000 - 1109',
+      latency: '5ms',
+      mainClub: 'Ajax Amsterdam',
+      stadium: 'Johan Cruijff ArenA',
+      lat: '52.3676',
+      lng: '4.9041',
+      districts: ['Centrum', 'Amsterdam-Zuid', 'Amsterdam-Noord', 'Amsterdam-West', 'Oost / Watergraafsmeer', 'Nieuw-West', 'Zuidoost'],
+      isps: ['Ziggo GigaNet', 'KPN Glasvezel', 'Odido Fiber', 'Delta']
+    },
+    {
+      name: 'Rotterdam',
+      slug: 'rotterdam',
+      province: 'Zuid-Holland',
+      postalPrefix: '3000 - 3089',
+      latency: '6ms',
+      mainClub: 'Feyenoord & Sparta Rotterdam',
+      stadium: 'Stadion Feijenoord (De Kuip)',
+      lat: '51.9244',
+      lng: '4.4777',
+      districts: ['Centrum', 'Kralingen-Crooswijk', 'Delfshaven', 'Feijenoord / Kop van Zuid', 'Prins Alexander', 'Noord', 'Charlois'],
+      isps: ['KPN Netwerk', 'Ziggo Kabel', 'Odido Glasvezel', 'Delta']
+    },
+    {
+      name: 'Den Haag',
+      slug: 'den-haag',
+      province: 'Zuid-Holland',
+      postalPrefix: '2491 - 2597',
+      latency: '6ms',
+      mainClub: 'ADO Den Haag',
+      stadium: 'Bingoal Stadion',
+      lat: '52.0705',
+      lng: '4.3007',
+      districts: ['Centrum', 'Scheveningen', 'Haagse Hout', 'Segbroek', 'Loosduinen', 'Escamp', 'Leidschenveen-Ypenburg'],
+      isps: ['KPN Glasvezel', 'Ziggo GigaNet', 'Odido', 'Open Dutch Fiber']
+    },
+    {
+      name: 'Utrecht',
+      slug: 'utrecht',
+      province: 'Utrecht',
+      postalPrefix: '3500 - 3585',
+      latency: '5ms',
+      mainClub: 'FC Utrecht',
+      stadium: 'Stadion Galgenwaard',
+      lat: '52.0907',
+      lng: '5.1214',
+      districts: ['Binnenstad', 'Leidsche Rijn', 'Oost', 'Vleuten-De Meern', 'Overvecht', 'Noordwest', 'Zuid / Lunetten'],
+      isps: ['Odido Fiber', 'Ziggo GigaNet', 'KPN Glasvezel', 'Delta']
+    },
+    {
+      name: 'Eindhoven',
+      slug: 'eindhoven',
+      province: 'Noord-Brabant',
+      postalPrefix: '5600 - 5658',
+      latency: '7ms',
+      mainClub: 'PSV Eindhoven',
+      stadium: 'Philips Stadion',
+      lat: '51.4416',
+      lng: '5.4697',
+      districts: ['Centrum', 'Strijp-S', 'Stratum', 'Woensel-Noord', 'Woensel-Zuid', 'Gestel', 'Tongelre'],
+      isps: ['KPN Glasvezel', 'Ziggo', 'Delta Fiber Brabant', 'Odido']
+    },
+    {
+      name: 'Groningen',
+      slug: 'groningen',
+      province: 'Groningen',
+      postalPrefix: '9700 - 9747',
+      latency: '9ms',
+      mainClub: 'FC Groningen',
+      stadium: 'Euroborg',
+      lat: '53.2194',
+      lng: '6.5665',
+      districts: ['Binnenstad', 'Oosterparkwijk', 'Helpman / Coendersborg', 'Vinkhuizen', 'Paddepoel', 'Zernike Campus', 'Hoogkerk'],
+      isps: ['KPN Netwerk Noord', 'Ziggo', 'Glasvezel Groningen', 'Odido']
+    },
+    {
+      name: 'Tilburg',
+      slug: 'tilburg',
+      province: 'Noord-Brabant',
+      postalPrefix: '5000 - 5049',
+      latency: '7ms',
+      mainClub: 'Willem II',
+      stadium: 'Koning Willem II Stadion',
+      lat: '51.5606',
+      lng: '5.0919',
+      districts: ['Centrum', 'Reeshof', 'Oud-Noord', 'West', 'Zuid', 'Noord-Oost', 'Besterd / Spoorzone'],
+      isps: ['Delta Fiber', 'KPN Glasvezel', 'Ziggo', 'Odido']
+    },
+    {
+      name: 'Almere',
+      slug: 'almere',
+      province: 'Flevoland',
+      postalPrefix: '1300 - 1363',
+      latency: '6ms',
+      mainClub: 'Almere City FC',
+      stadium: 'Yanmar Stadion',
+      lat: '52.3702',
+      lng: '5.2141',
+      districts: ['Almere Stad', 'Almere Buiten', 'Almere Poort', 'Almere Haven', 'Almere Hout', 'Nobelhorst', 'Muziekwijk'],
+      isps: ['KPN Glasvezel Flevoland', 'Ziggo', 'Odido Fiber', 'Delta']
+    },
+    {
+      name: 'Breda',
+      slug: 'breda',
+      province: 'Noord-Brabant',
+      postalPrefix: '4800 - 4839',
+      latency: '7ms',
+      mainClub: 'NAC Breda',
+      stadium: 'Rat Verlegh Stadion',
+      lat: '51.5719',
+      lng: '4.7683',
+      districts: ['Centrum', 'Ginneken', 'Princenhage', 'Haagse Beemden', 'Breda-Oost', 'Breda-Noord', 'Bavel'],
+      isps: ['KPN Netwerk', 'Delta Fiber', 'Ziggo', 'Odido']
+    },
+    {
+      name: 'Nijmegen',
+      slug: 'nijmegen',
+      province: 'Gelderland',
+      postalPrefix: '6500 - 6546',
+      latency: '8ms',
+      mainClub: 'NEC Nijmegen',
+      stadium: 'Goffertstadion',
+      lat: '51.8126',
+      lng: '5.8372',
+      districts: ['Centrum', 'Bottendaal', 'Dukenburg', 'Lindenholt', 'Nijmegen-Noord (Waalsprong)', 'Nijmegen-Oost', 'Hatert'],
+      isps: ['KPN Glasvezel', 'Ziggo', 'Odido Fiber', 'Delta']
+    }
   ];
 
   return cities.map((city) => ({
@@ -46,111 +168,258 @@ const { city } = Astro.props;
 
 const localSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": `IPTV Nederlandse - Regio ${city.name}`,
-  "image": "https://iptvnederlandse.store/favicon.svg",
-  "url": `https://iptvnederlandse.store/locations/${city.slug}`,
-  "telephone": "+18036582620",
-  "priceRange": "€5 - €35",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": city.name,
-    "addressRegion": city.province,
-    "postalCode": city.postalPrefix,
-    "addressCountry": "NL"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "52.3676",
-    "longitude": "4.9041"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": city.name
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "9850"
-  },
-  "description": `Beste IPTV met abonnement in ${city.name} (${city.province}). 4K Ultra HD streams zonder buffering met directe activatie.`
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": `IPTV Nederlandse - Regio ${city.name}`,
+      "image": "https://iptvnederlandse.store/favicon.svg",
+      "url": `https://iptvnederlandse.store/locations/${city.slug}`,
+      "telephone": "+18036582620",
+      "priceRange": "€5 - €35",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": city.name,
+        "addressRegion": city.province,
+        "postalCode": city.postalPrefix,
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": city.lat,
+        "longitude": city.lng
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": city.name
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "9850"
+      },
+      "description": `Beste IPTV met abonnement in ${city.name} (${city.province}). 4K Ultra HD streams zonder buffering met directe activatie binnen 5 minuten.`
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://iptvnederlandse.store/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Steden",
+          "item": "https://iptvnederlandse.store/#locations"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": city.name,
+          "item": `https://iptvnederlandse.store/locations/${city.slug}`
+        }
+      ]
+    }
+  ]
 };
+
+const cityFaqs = [
+  {
+    q: `Hoe snel is de IPTV streamverbinding in ${city.name}?`,
+    a: `Dankzij onze dedicated AMS-IX en lokale interconnecties bedraagt de gemeten netwerklatentie in ${city.name} slechts ${city.latency}. Dit resulteert in direct zappen en stabiel streamen in 4K 60FPS.`
+  },
+  {
+    q: `Werkt IPTV Nederlandse met mijn internetprovider in ${city.name}?`,
+    a: `Ja, onze streams zijn 100% geoptimaliseerd voor alle netwerken in ${city.name}, waaronder ${city.isps.join(', ')}. Traffic-shaping wordt effectief omzeild via onze beveiligde CDN-routes.`
+  },
+  {
+    q: `Kan ik alle wedstrijden van ${city.mainClub} live bekijken?`,
+    a: `Zeker! Alle thuis- en uitwedstrijden van ${city.mainClub} (inclusief Europese wedstrijden en bekervoetbal) worden in vloeiende 60FPS 4K UHD/FHD uitgezonden zonder haperingen.`
+  },
+  {
+    q: `Hoe snel ontvang ik mijn inloggegevens in ${city.name}?`,
+    a: `Direct na bestelling via onze website genereert ons systeem jouw unieke Xtream Codes en M3U-afspeellijst binnen 5 minuten. Onze helpdesk staat 24/7 klaar via WhatsApp om je te assisteren.`
+  }
+];
 ---
 
 <Layout 
   title={`IPTV met Abonnement in ${city.name} — #1 IPTV Kopen (${city.province})`}
-  description={`Zoek je een betrouwbaar IPTV met abonnement in ${city.name}? Stream haarscherpe 4K Eredivisie sport & TV zonder haperingen. Binnen 5 min geactiveerd!`}
+  description={`Zoek je een betrouwbaar IPTV met abonnement in ${city.name}? Stream haarscherpe 4K Eredivisie sport & TV zonder haperingen in ${city.province}. Binnen 5 min geactiveerd!`}
   schema={localSchema}
 >
   <StickyHeader />
 
-  <main>
+  <main class="relative overflow-hidden bg-[#0a0a0f]">
+    
     <!-- 1. Hero with localized dynamic city title -->
     <Hero city={city.name} />
 
     <!-- Live Sports Scores -->
     <LiveScores />
 
-    <!-- 2. Features Grid -->
+    <!-- 2. Pricing Section (Positioned Above Why Choose Us) -->
+    <PricingCard />
+
+    <!-- 3. Features Grid -->
     <FeatureGrid />
 
-    <!-- Local Programmatic SEO In-Depth Content Block (~1,200 words total) -->
-    <section class="py-16 bg-[#0a0a0f] border-t border-b border-white/5">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-gray-300 text-sm sm:text-base leading-relaxed">
+    <!-- Deep Local Authority Section (~1,500+ Words Density) -->
+    <section class="py-20 bg-[#0d0d14] border-t border-b border-white/5 relative">
+      <!-- Ambient background decoration -->
+      <div class="absolute top-1/2 left-0 w-96 h-96 bg-[#7c4ec2]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-10 right-0 w-96 h-96 bg-[#e94560]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 text-gray-300 text-sm sm:text-base leading-relaxed relative z-10">
         
+        <!-- Section 1: Intro & Regional Hub -->
         <div class="space-y-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase">
-            <span>Regionale Serverknooppunten in {city.province}</span>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <Signal class="w-3.5 h-3.5" />
+            Regionaal Serverknooppunt {city.province} • Latency: {city.latency}
           </div>
 
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Waarom Inwoners van {city.name} Kiezen Voor <span class="text-gradient">IPTV Nederlandse</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+            Waarom Kijkers in <span class="text-gradient">{city.name}</span> Kiezen Voor IPTV Nederlandse
           </h2>
 
           <p>
-            Inwoners van <strong>{city.name}</strong> stappen massaal over van traditionele kabelabonnementen naar een modern, flexibel <strong>iptv met abonnement</strong>. Dankzij onze directe glasvezelkoppelingen met de centrale internetknooppunten in Nederland profiteer je in de regio {city.name} van een ongeëvenaarde responstijd van circa <strong>{city.latency}</strong>. Dit betekent: direct zappen zonder wachttijd en geen haperingen tijdens drukke live sportuitzendingen.
+            Inwoners van <strong>{city.name}</strong> en de omliggende regio in <strong>{city.province}</strong> stappen massaal over van traditionele kabelaanbieders naar een modern, flexibel <strong>iptv met abonnement</strong>. Waar traditionele tv-pakketten gepaard gaan met langdurige jaarcontracten, verplichte huurontvangers en torenhoge maandtarieven, levert <strong>IPTV Nederlandse</strong> een revolutionair alternatief: ongeëvenaarde 4K beeldkwaliteit, duizenden live zenders en razendsnelle servers voor slechts een fractie van de prijs.
           </p>
 
           <p>
-            Of je nu woont in het centrum van {city.name} of in de omliggende wijken van {city.province}: met onze geavanceerde Anti-Freeze technologie stream je probleemloos in 4K Ultra HD en 60FPS via internetproviders zoals Ziggo, KPN, Odido of Delta.
+            Dankzij onze directe interconnectie met de AMS-IX (Amsterdam Internet Exchange) en regionale CDN-knooppunten in Nederland profiteer je in postcodegebied <strong>{city.postalPrefix}</strong> van een extreem lage responstijd van circa <strong>{city.latency}</strong>. Dit betekent dat zenders binnen een fractie van een seconde laden en dat buffering tijdens drukke live-uitzendingen tot het verleden behoort.
           </p>
         </div>
 
-        <!-- Local Network Peering Data Card -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        <!-- Metric KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div class="glass-card rounded-2xl p-5 border border-white/10 text-center">
             <span class="text-xs text-gray-400 block">Gemeten Latency in {city.name}</span>
             <span class="text-2xl font-black text-emerald-400 mt-1 block">{city.latency}</span>
-            <span class="text-[11px] text-gray-500">Directe AMS-IX Peering</span>
+            <span class="text-[11px] text-gray-500">AMS-IX Direct Peering</span>
           </div>
 
           <div class="glass-card rounded-2xl p-5 border border-white/10 text-center">
-            <span class="text-xs text-gray-400 block">Postcodegebied</span>
+            <span class="text-xs text-gray-400 block">Postcode Dekking</span>
             <span class="text-xl font-bold text-white mt-1 block">{city.postalPrefix}</span>
-            <span class="text-[11px] text-gray-500">Regio {city.province}</span>
+            <span class="text-[11px] text-gray-500">{city.province}</span>
           </div>
 
           <div class="glass-card rounded-2xl p-5 border border-white/10 text-center">
-            <span class="text-xs text-gray-400 block">Gemiddelde Klantscore in {city.name}</span>
+            <span class="text-xs text-gray-400 block">Sport Framerate</span>
+            <span class="text-2xl font-black text-[#38bdf8] mt-1 block">60 FPS Vaste Rate</span>
+            <span class="text-[11px] text-gray-500">Geen Vertraging</span>
+          </div>
+
+          <div class="glass-card rounded-2xl p-5 border border-white/10 text-center">
+            <span class="text-xs text-gray-400 block">Klantbeoordeling {city.name}</span>
             <span class="text-2xl font-black text-amber-400 mt-1 block">4.9 / 5.0</span>
-            <span class="text-[11px] text-gray-500">9.850+ Nederlandse Reviews</span>
+            <span class="text-[11px] text-gray-500">9.850+ Tevreden Kijkers</span>
           </div>
         </div>
 
-        <div class="space-y-4 pt-4">
-          <h3 class="text-xl font-bold text-white">
-            Eenvoudig een IPTV Abbo Kopen in {city.name}
+        <!-- Section 2: ISP Optimization in the City -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 space-y-4">
+          <h3 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+            <Signal class="w-6 h-6 text-emerald-400" />
+            Glasvezel & Kabel Provider Optimalisatie in {city.name}
           </h3>
           <p>
-            Wil je vandaag nog een <strong>ip tv kopen</strong> in {city.name}? Binnen 5 minuten na het voltooien van jouw bestelling ontvang je alle inloggegevens direct via WhatsApp en e-mail. Onze helpdesk staat 24 uur per dag paraat om je te begeleiden bij de installatie op jouw Samsung Smart TV, LG TV, Android TV Box, Firestick of smartphone.
+            In {city.name} zijn huishoudens aangesloten op diverse telecominfrastructuren. Onze servers zijn speciaal geconfigureerd voor naadloze compatibiliteit met alle lokale providers:
           </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            {city.isps.map((isp) => (
+              <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-3">
+                <CheckCircle2 class="w-4 h-4 text-emerald-400 shrink-0" />
+                <span class="text-xs sm:text-sm font-semibold text-white">{isp} Geoptimaliseerd</span>
+              </div>
+            ))}
+          </div>
+          <p class="text-xs text-gray-400 pt-2">
+            Zelfs wanneer internetproviders proberen videostreams te 'knijpen' (traffic shaping), zorgen onze versleutelde SSL-tunnels ervoor dat jouw stream continu op volle 4K Ultra HD bandbreedte blijft presteren.
+          </p>
+        </div>
+
+        <!-- Section 3: Local Sport & Eredivisie Focus -->
+        <div class="space-y-4">
+          <h3 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+            <Trophy class="w-6 h-6 text-amber-400" />
+            Volg Iedere Wedstrijd van {city.mainClub} in Vloeiende 60 FPS
+          </h3>
+          <p>
+            Voor sportliefhebbers in {city.name} is er niets belangrijker dan live sport zonder haperingen. Of het nu gaat om de spannende wedstrijden van <strong>{city.mainClub}</strong> in het {city.stadium}, Europese Champions League avonden of de Formule 1 races van Max Verstappen: met ons <strong>ip tv abonnement</strong> mis je geen seconde actie.
+          </p>
+          <p>
+            Al onze sportkanalen worden uitgezonden met een vaste beeldsnelheid van <strong>60 frames per seconde (60 FPS)</strong>. Hierdoor blijft de bal altijd scherp in beeld en ervaar je dezelfde soepele beeldkwaliteit als op traditionele kabel, maar dan tegen een fractie van de abonnementsprijs.
+          </p>
+        </div>
+
+        <!-- Section 4: Districts Coverage Grid -->
+        <div class="space-y-4">
+          <h3 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+            <MapPin class="w-6 h-6 text-[#e94560]" />
+            Volledige Dekking in Alle Wijken & Buurten van {city.name}
+          </h3>
+          <p>
+            Onze netwerkverbindingen bestrijken de gehele gemeente {city.name} en omstreken. Wij leveren gegarandeerde 4K streamingkwaliteit in onder andere:
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 pt-1">
+            {city.districts.map((district) => (
+              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-center text-xs font-semibold text-gray-300">
+                {district}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Section 5: How to Order in the City -->
+        <div class="glass-card-glow rounded-3xl p-6 sm:p-8 border border-[#7c4ec2]/30 space-y-4">
+          <h3 class="text-xl sm:text-2xl font-bold text-white">
+            Hoe Bestel & Activeer je IPTV in {city.name}?
+          </h3>
+          <p>
+            Binnen 5 minuten na jouw bestelling ben je live. Ons proces is eenvoudig:
+          </p>
+          <ol class="list-decimal pl-6 space-y-2 text-sm text-gray-300">
+            <li>Kies hieronder jouw gewenste pakket (onze 12-maanden deal van €35,- is inclusief gratis IBO Player activatie bonus).</li>
+            <li>Voltooi de veilige transactie via Bancontact, Creditcard of Crypto (-10%).</li>
+            <li>Je ontvangt direct jouw M3U-link en Xtream Codes via WhatsApp en e-mail.</li>
+            <li>Vul de gegevens in op jouw Smart TV (IBO Player / Smarters Pro) of TV Box en geniet direct van duizenden zenders!</li>
+          </ol>
+        </div>
+
+        <!-- Section 6: Local City FAQ Accordion -->
+        <div class="space-y-6 pt-4">
+          <div class="space-y-2">
+            <h3 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+              <HelpCircle class="w-6 h-6 text-[#38bdf8]" />
+              Veelgestelde Vragen van Kijkers in {city.name}
+            </h3>
+            <p class="text-xs text-gray-400">Specifieke vragen over IPTV gebruik in de regio {city.name}.</p>
+          </div>
+
+          <div class="space-y-3">
+            {cityFaqs.map((faq) => (
+              <details class="glass-card rounded-2xl group border border-white/10 transition-all open:border-[#7c4ec2]/50 open:bg-white/[0.04]">
+                <summary class="flex items-center justify-between p-5 cursor-pointer list-none focus:outline-none">
+                  <span class="text-sm sm:text-base font-bold text-white group-hover:text-[#d1b3ff] transition-colors pr-4">
+                    {faq.q}
+                  </span>
+                  <ChevronDown class="w-4 h-4 text-gray-400 group-open:rotate-180 group-open:text-[#e94560] shrink-0 transition-transform duration-300" />
+                </summary>
+                <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-white/5 pt-3">
+                  <p>{faq.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
 
       </div>
     </section>
-
-    <!-- 3. Pricing Section -->
-    <PricingCard />
 
     <!-- 4. Referral Banner -->
     <ReferralBanner />
@@ -170,7 +439,7 @@ const localSchema = {
     <!-- 9. Contact Form -->
     <ContactForm />
 
-    <!-- 10. FAQ Section -->
+    <!-- 10. General FAQ Section -->
     <FAQSection />
 
     <!-- 11. CTA Banner -->

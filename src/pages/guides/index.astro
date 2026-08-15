@@ -67,7 +67,7 @@ const sortedGuides = guides.sort((a: CollectionEntry<'guides'>, b: CollectionEnt
 
       <!-- Articles Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sortedGuides.map((guide) => {
+        {sortedGuides.map((guide: any) => {
           const dateObj = guide.data.pubDate || guide.data.date || new Date();
           const formattedDate = dateObj.toLocaleDateString('nl-NL', {
             year: 'numeric',
