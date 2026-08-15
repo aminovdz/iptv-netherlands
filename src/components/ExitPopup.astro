@@ -1,0 +1,146 @@
+---
+import { X, Gift, MessageCircle, ArrowRight, ShieldCheck, Zap } from 'lucide-astro';
+---
+
+<div 
+  id="exit-popup" 
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="exit-popup-title"
+>
+  <div 
+    class="relative w-full max-w-lg rounded-3xl glass-card-glow border-2 border-[#e94560] p-6 sm:p-8 text-center shadow-2xl shadow-[#e94560]/30 transform scale-95 transition-transform duration-300"
+    id="exit-popup-card"
+  >
+    
+    <!-- Close Button -->
+    <button 
+      id="close-exit-popup"
+      type="button"
+      class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[#e94560]"
+      aria-label="Sluit pop-up"
+    >
+      <X class="w-5 h-5" />
+    </button>
+
+    <!-- Icon & Badge -->
+    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#e94560] to-[#7c4ec2] p-0.5 mx-auto mb-4 flex items-center justify-center shadow-lg shadow-[#e94560]/40 animate-bounce">
+      <div class="w-full h-full bg-[#0a0a0f] rounded-[14px] flex items-center justify-center">
+        <Gift class="w-8 h-8 text-[#ff758f]" />
+      </div>
+    </div>
+
+    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e94560]/20 text-[#ff758f] text-xs font-extrabold uppercase tracking-wider mb-3">
+      Wacht! Exclusieve Verlaat-Korting
+    </div>
+
+    <h3 id="exit-popup-title" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">
+      Ontvang Nu <span class="text-gradient">1 Maand Gratis</span> Extra!
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed mb-6">
+      Verlaat de pagina niet met lege handen. Sluit vandaag jouw <strong>IPTV met abonnement</strong> af via WhatsApp en wij voegen direct <strong>1 maand gratis extra streamingtijd</strong> toe aan jouw account!
+    </p>
+
+    <!-- Main WhatsApp Offer Action Button -->
+    <a 
+      href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20ik%20wil%20graag%20de%201%20maand%20gratis%20actie%20claimen!"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-[#e94560] to-[#7c4ec2] text-white font-extrabold text-base shadow-xl shadow-[#e94560]/40 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 mb-4"
+    >
+      <MessageCircle class="w-5 h-5" />
+      <span>Claim 1 Maand Gratis via WhatsApp</span>
+      <ArrowRight class="w-4 h-4" />
+    </a>
+
+    <button 
+      id="dismiss-exit-btn"
+      type="button"
+      class="text-xs text-gray-400 hover:text-white underline transition-colors"
+    >
+      Nee bedankt, ik betaal liever het normale tarief
+    </button>
+
+    <!-- Micro trust tags -->
+    <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-4 text-[11px] text-gray-400">
+      <span class="flex items-center gap-1">
+        <Zap class="w-3.5 h-3.5 text-[#38bdf8]" /> Directe WhatsApp Verificatie
+      </span>
+      <span class="flex items-center gap-1">
+        <ShieldCheck class="w-3.5 h-3.5 text-emerald-400" /> Geen Verplichtingen
+      </span>
+    </div>
+
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('exit-popup');
+    const card = document.getElementById('exit-popup-card');
+    const closeBtn = document.getElementById('close-exit-popup');
+    const dismissBtn = document.getElementById('dismiss-exit-btn');
+
+    const STORAGE_KEY = 'exit_popup_session_24h';
+    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000; // 24 hours in ms
+
+    function isSuppressed() {
+      const lastShown = localStorage.getItem(STORAGE_KEY);
+      if (!lastShown) return false;
+      const elapsed = Date.now() - parseInt(lastShown, 10);
+      return elapsed < TWENTY_FOUR_HOURS;
+    }
+
+    function recordShown() {
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    }
+
+    let isVisible = false;
+
+    function showPopup() {
+      if (isSuppressed() || isVisible || !popup || !card) return;
+      isVisible = true;
+      recordShown();
+      popup.classList.remove('opacity-0', 'pointer-events-none');
+      popup.classList.add('opacity-100', 'pointer-events-auto');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }
+
+    function hidePopup() {
+      if (!popup || !card) return;
+      isVisible = false;
+      recordShown();
+      popup.classList.remove('opacity-100', 'pointer-events-auto');
+      popup.classList.add('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+    }
+
+    // Trigger when user cursor moves above top window edge (exit intent)
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY <= 10 && !isSuppressed()) {
+        showPopup();
+      }
+    });
+
+    // Fallback timer trigger for mobile after 45 seconds if not suppressed
+    setTimeout(() => {
+      if (!isSuppressed() && !isVisible) {
+        showPopup();
+      }
+    }, 45000);
+
+    closeBtn?.addEventListener('click', hidePopup);
+    dismissBtn?.addEventListener('click', hidePopup);
+    popup?.addEventListener('click', (e) => {
+      if (e.target === popup) hidePopup();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') hidePopup();
+    });
+  });
+</script>

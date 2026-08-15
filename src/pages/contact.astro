@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+---
+
+<Layout 
+  title="Contact & Klantenservice 24/7"
+  description="Neem 24/7 contact op met de klantenservice van IPTV Nederlandse via WhatsApp (+1 803 658 2620), Telegram of e-mail voor directe ondersteuning en activaties."
+>
+  <StickyHeader />
+
+  <main class="pt-20">
+    <ContactForm />
+  </main>
+
+  <FloatingWhatsApp />
+  <Footer />
+</Layout>

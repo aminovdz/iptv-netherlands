@@ -1,0 +1,30 @@
+globalThis.process ??= {}; globalThis.process.env ??= {};
+import { c as createComponent, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_CBvyUju7.mjs';
+import { $ as $$Layout, a as $$StickyHeader, b as $$Tv, c as $$MessageCircle, d as $$FloatingWhatsApp, e as $$Footer } from '../chunks/FloatingWhatsApp_7f_lhg-5.mjs';
+import { $ as $$AlertCircle } from '../chunks/AlertCircle_IsMEJC5_.mjs';
+import { $ as $$ArrowLeft } from '../chunks/ArrowLeft_C9nM3NAM.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$404 = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "404 \u2014 Pagina Niet Gevonden", "description": "De opgevraagde pagina op IPTV Nederlandse kon helaas niet worden gevonden. Keer terug naar de startpagina of neem contact op." }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "StickyHeader", $$StickyHeader, {})} ${maybeRenderHead()}<main class="pt-32 pb-24 relative overflow-hidden bg-[#0a0a0f] min-h-screen flex items-center justify-center"> <!-- Ambient glow --> <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-tr from-[#7c4ec2]/20 via-[#e94560]/20 to-transparent rounded-full blur-3xl pointer-events-none"></div> <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6"> <!-- 404 Visual Indicator --> <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#7c4ec2] to-[#e94560] p-0.5 mx-auto flex items-center justify-center shadow-2xl shadow-[#7c4ec2]/30"> <div class="w-full h-full bg-[#0a0a0f] rounded-[22px] flex items-center justify-center"> ${renderComponent($$result2, "Tv", $$Tv, { "class": "w-10 h-10 text-[#ff758f]" })} </div> </div> <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-[#e94560] uppercase tracking-wider"> ${renderComponent($$result2, "AlertCircle", $$AlertCircle, { "class": "w-3.5 h-3.5" })}
+Foutcode 404 • Geen Signaal
+</div> <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
+Oeps! Deze Pagina Bestaat Niet
+</h1> <p class="text-base text-gray-300 max-w-md mx-auto leading-relaxed">
+Het lijkt erop dat de link verouderd is of dat het stream-kanaal is verplaatst. Geen zorgen, je kunt direct terugkeren naar onze actieve aanbiedingen.
+</p> <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4"> <a href="/" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#7c4ec2] to-[#e94560] text-white font-extrabold text-sm shadow-xl shadow-[#7c4ec2]/30 hover:scale-105 transition-all flex items-center justify-center gap-2"> ${renderComponent($$result2, "ArrowLeft", $$ArrowLeft, { "class": "w-4 h-4" })} <span>Terug naar Startpagina</span> </a> <a href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20ik%20liep%20vast%20op%20een%20onbekende%20pagina." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-sm border border-white/10 transition-all flex items-center justify-center gap-2"> ${renderComponent($$result2, "MessageCircle", $$MessageCircle, { "class": "w-4 h-4 text-emerald-400" })} <span>Hulp via WhatsApp</span> </a> </div> </div> </main> ${renderComponent($$result2, "FloatingWhatsApp", $$FloatingWhatsApp, {})} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
+}, "/Users/Mc/Documents/antigravity/IPTV netherlands/src/pages/404.astro", void 0);
+
+const $$file = "/Users/Mc/Documents/antigravity/IPTV netherlands/src/pages/404.astro";
+const $$url = "/404";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$404,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StickyHeader from '../components/StickyHeader.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { Scale, Mail, ShieldAlert, FileText } from 'lucide-astro';
+---
+
+<Layout 
+  title="DMCA & Auteursrechten Beleid"
+  description="Lees het officiële DMCA en auteursrechtenbeleid van IPTV Nederlandse. Procedure voor meldingen van inbreuk en intellectueel eigendom."
+>
+  <StickyHeader />
+
+  <main class="pt-32 pb-24 relative overflow-hidden bg-[#0a0a0f] min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Page Header -->
+      <div class="text-center mb-12 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-[#38bdf8] uppercase tracking-wider">
+          <Scale class="w-3.5 h-3.5" />
+          Auteursrechten & Intellectueel Eigendom
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          DMCA <span class="text-gradient">Verklaring & Beleid</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-400">Richtlijnen conform de Digital Millennium Copyright Act</p>
+      </div>
+
+      <!-- Content Box -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 space-y-8 text-sm sm:text-base text-gray-300 leading-relaxed">
+        
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <ShieldAlert class="w-5 h-5 text-amber-400" />
+            1. Technische Dienstverlening & Hosting
+          </h2>
+          <p>
+            <strong>IPTV Nederlandse</strong> (iptvnederlandse.store) respecteert de intellectuele eigendomsrechten van derden en verwacht dat haar gebruikers hetzelfde doen. Wij hosten, beheren, zenden of uploaden <strong>zelf geen mediabestanden, videobestanden of beschermde uitzendingen</strong> op onze eigen servers.
+          </p>
+          <p>
+            Onze website fungeert uitsluitend als een technische portal en middleware-gateway die indexering en communicatie tussen geautoriseerde externe mediaspelers en netwerkstreams faciliteert.
+          </p>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <FileText class="w-5 h-5 text-[#38bdf8]" />
+            2. Melding van Vermeende Inbreuk (Takedown Notice)
+          </h2>
+          <p>
+            Indien je van mening bent dat jouw auteursrechtelijk beschermde materiaal op ongeoorloofde wijze toegankelijk is via een technische koppeling op ons platform, verzoeken wij je om een formele schriftelijke melding in te dienen.
+          </p>
+          <p>
+            Een geldige DMCA-kennisgeving dient de volgende gegevens te bevatten:
+          </p>
+          <ul class="list-disc pl-6 space-y-1.5 text-gray-400 text-sm">
+            <li>Een fysieke of elektronische handtekening van de auteursrechthebbende of diens bevoegde vertegenwoordiger.</li>
+            <li>Een specifieke identificatie en beschrijving van het auteursrechtelijk beschermde werk.</li>
+            <li>De exacte URL of technische referentie die inbreuk zou maken.</li>
+            <li>Jouw contactgegevens (volledige naam, organisatie, adres, telefoonnummer en zakelijk e-mailadres).</li>
+            <li>Een verklaring te goeder trouw dat het betwiste gebruik niet is toegestaan door de auteursrechthebbende.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <Mail class="w-5 h-5 text-[#7c4ec2]" />
+            3. Contactpersoon Auteursrechten
+          </h2>
+          <p>
+            DMCA-kennisgevingen kunnen per e-mail worden ingediend bij onze juridische afdeling:
+          </p>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm space-y-1">
+            <p><strong>Aan:</strong> Juridische Zaken / DMCA Agent</p>
+            <p><strong>E-mail:</strong> <a href="mailto:contact@iptvnederlandse.store" class="text-[#38bdf8] font-bold hover:underline">contact@iptvnederlandse.store</a></p>
+            <p><strong>Cc:</strong> <a href="mailto:support@castvera.com" class="text-[#7c4ec2] font-bold hover:underline">support@castvera.com</a></p>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <FloatingWhatsApp />
+  <Footer />
+</Layout>

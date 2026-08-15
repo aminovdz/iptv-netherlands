@@ -1,0 +1,51 @@
+---
+import { Users, Gift, ArrowRight, Share2, Sparkles } from 'lucide-astro';
+---
+
+<section class="py-12 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="glass-card-glow rounded-3xl p-8 sm:p-10 border border-[#38bdf8]/30 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+      
+      <!-- Ambient background decoration -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#38bdf8]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Left Column: Copy -->
+      <div class="space-y-3 text-center lg:text-left max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#38bdf8]/15 border border-[#38bdf8]/30 text-[#38bdf8] text-xs font-bold uppercase tracking-wider">
+          <Sparkles class="w-3.5 h-3.5" />
+          Viraal Referral Programma
+        </div>
+        
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          Nodig Vrienden Uit & Ontvang <span class="text-gradient">1 Maand Gratis Streaming</span>
+        </h3>
+
+        <p class="text-sm text-gray-300 leading-relaxed">
+          Ben je tevreden over onze haarscherpe 4K streams? Deel IPTV Nederlandse met vrienden, familie of collega's. Voor iedere vriend die een abonnement afsluit, verlengen wij jouw abonnement met <strong>1 volle maand gratis</strong>!
+        </p>
+      </div>
+
+      <!-- Right Column: Dual CTAs -->
+      <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full lg:w-auto">
+        <a 
+          href="/referral"
+          class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#7c4ec2] to-[#38bdf8] hover:opacity-90 text-white font-bold text-sm text-center shadow-lg shadow-[#7c4ec2]/30 transition-all flex items-center justify-center gap-2"
+        >
+          <span>Hoe Werkt Het?</span>
+          <ArrowRight class="w-4 h-4" />
+        </a>
+
+        <a 
+          href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20ik%20wil%20graag%20mijn%20persoonlijke%20referral%20link%20aanvragen."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-sm text-center border border-white/10 transition-all flex items-center justify-center gap-2"
+        >
+          <Share2 class="w-4 h-4 text-emerald-400" />
+          <span>Vraag Referral Code</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

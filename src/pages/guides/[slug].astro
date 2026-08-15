@@ -1,0 +1,213 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Clock, Calendar, ArrowLeft, ArrowRight, User, Sparkles, ShieldCheck, MessageCircle } from 'lucide-astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide: CollectionEntry<'guides'>) => ({
+    params: { slug: guide.slug },
+    props: { guide }
+  }));
+}
+
+interface Props {
+  guide: CollectionEntry<'guides'>;
+}
+
+const { guide } = Astro.props;
+const { Content } = await guide.render();
+
+const dateObj = guide.data.pubDate || guide.data.date || new Date();
+const formattedDate = dateObj.toLocaleDateString('nl-NL', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": guide.data.title,
+  "description": guide.data.description,
+  "image": "https://iptvnederlandse.store/favicon.svg",
+  "datePublished": dateObj.toISOString(),
+  "dateModified": guide.data.updatedDate ? guide.data.updatedDate.toISOString() : dateObj.toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": guide.data.author || "IPTV Nederlandse Redactie",
+    "url": "https://iptvnederlandse.store"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IPTV Nederlandse",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://iptvnederlandse.store/favicon.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://iptvnederlandse.store/guides/${guide.slug}`
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://iptvnederlandse.store"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Gidsen",
+      "item": "https://iptvnederlandse.store/guides"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": guide.data.title,
+      "item": `https://iptvnederlandse.store/guides/${guide.slug}`
+    }
+  ]
+};
+---
+
+<Layout 
+  title={guide.data.title}
+  description={guide.data.description}
+  schema={articleSchema}
+>
+  <!-- Injected Breadcrumb Schema -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <StickyHeader />
+
+  <main class="pt-32 pb-24 relative overflow-hidden bg-[#0a0a0f] min-h-screen">
+    <!-- Ambient glow -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-r from-[#7c4ec2]/15 via-[#38bdf8]/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Back Navigation & Breadcrumb -->
+      <div class="mb-8 flex items-center justify-between text-xs text-gray-400">
+        <a href="/guides" class="inline-flex items-center gap-1.5 hover:text-white transition-colors">
+          <ArrowLeft class="w-4 h-4" />
+          <span>Terug naar alle gidsen</span>
+        </a>
+
+        <div class="flex items-center gap-2">
+          <span>{guide.data.category || 'Gids'}</span>
+          <span>•</span>
+          <span class="text-[#38bdf8] flex items-center gap-1">
+            <Clock class="w-3.5 h-3.5" />
+            {guide.data.readTime || '5 min leestijd'}
+          </span>
+        </div>
+      </div>
+
+      <!-- Article Header -->
+      <header class="mb-10 space-y-4 text-center sm:text-left border-b border-white/10 pb-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          {guide.data.title}
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-4 text-xs text-gray-400">
+          <div class="flex items-center gap-1.5">
+            <User class="w-4 h-4 text-[#7c4ec2]" />
+            <span>{guide.data.author || 'IPTV Nederlandse Redactie'}</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <Calendar class="w-4 h-4 text-gray-500" />
+            <span>Gepubliceerd op {formattedDate}</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-emerald-400">
+            <ShieldCheck class="w-4 h-4" />
+            <span>Technisch Gecontroleerd</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Guide Hero Image with Keyword Alt Tag -->
+      {guide.data.heroImage && (
+        <div class="mb-10 rounded-3xl overflow-hidden glass-card border border-white/10 shadow-2xl">
+          <img 
+            src={guide.data.heroImage} 
+            alt={`${guide.data.title} - IPTV met abonnement streaming gids`}
+            class="w-full h-auto object-cover max-h-96"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      <!-- Sticky Permanent Recommendation Banner -->
+      <div class="mb-12 glass-card-glow rounded-3xl p-6 sm:p-7 border border-[#e94560]/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div class="space-y-1.5 text-center sm:text-left">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e94560]/20 text-[#ff758f] text-xs font-bold uppercase">
+            <Sparkles class="w-3 h-3 text-amber-400" />
+            Aanbevolen Oplossing in Nederland
+          </span>
+          <h3 class="text-lg font-bold text-white">Direct zorgeloos 4K streamen?</h3>
+          <p class="text-xs text-gray-300">
+            Kies voor ons complete 12-maanden pakket voor slechts <strong>€35,-</strong> inclusief gratis <strong>IBO Player</strong> app-activatie bonus en directe levering binnen 5 minuten.
+          </p>
+        </div>
+
+        <a 
+          href="/#pricing"
+          class="px-6 py-3 rounded-xl bg-gradient-to-r from-[#e94560] to-[#7c4ec2] text-white font-extrabold text-xs shadow-lg shadow-[#e94560]/30 hover:scale-105 transition-all shrink-0 flex items-center gap-1.5"
+        >
+          <span>Activeer Nu</span>
+          <ArrowRight class="w-3.5 h-3.5" />
+        </a>
+      </div>
+
+      <!-- Main Article Markdown Content -->
+      <article class="prose prose-invert prose-purple max-w-none space-y-6 text-gray-300 text-sm sm:text-base leading-relaxed">
+        <Content />
+      </article>
+
+      <!-- Bottom Author & Share Card -->
+      <div class="mt-16 p-6 rounded-3xl glass-card border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4 text-left">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#7c4ec2] to-[#e94560] flex items-center justify-center font-bold text-white text-lg shrink-0">
+            IN
+          </div>
+          <div>
+            <span class="text-sm font-bold text-white block">{guide.data.author || 'IPTV Nederlandse Redactie'}</span>
+            <span class="text-xs text-gray-400">Streaming & Technische Specialisten voor Nederland</span>
+          </div>
+        </div>
+
+        <a 
+          href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20ik%20heb%20een%20vraag%20naar%20aanleiding%20van%20jullie%20gids."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-xl bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-2 transition-all shrink-0"
+        >
+          <MessageCircle class="w-4 h-4 text-emerald-400" />
+          <span>Vraag Hulp via WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="mt-16">
+        <CTASection />
+      </div>
+
+    </div>
+  </main>
+
+  <FloatingWhatsApp />
+  <Footer />
+</Layout>

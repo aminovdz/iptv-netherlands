@@ -1,0 +1,138 @@
+---
+import { 
+  Zap, 
+  Tv, 
+  ShieldCheck, 
+  Clock, 
+  Trophy, 
+  Smartphone, 
+  ListOrdered, 
+  Headphones, 
+  CreditCard,
+  CheckCircle2
+} from 'lucide-astro';
+
+const features = [
+  {
+    icon: Zap,
+    title: "Anti-Freeze Technologie 99.9% Uptime",
+    description: "Dankzij onze krachtige dedicated Europese servers en geavanceerde load balancing geniet je van een gegarandeerd vloeiende stream zonder vertraging of vastlopers tijdens piekmomenten.",
+    badge: "Super Stabiel"
+  },
+  {
+    icon: Tv,
+    title: "4K Ultra HD & Full HD Kwaliteit",
+    description: "Ervaar entertainment in verbluffende 4K UHD en Full HD resolutie met 60 frames per seconde. Perfect voor haarscherpe details en cinematografische beeldkwaliteit.",
+    badge: "Haarscherp Beeld"
+  },
+  {
+    icon: Clock,
+    title: "Directe Activatie Binnen 5 Minuten",
+    description: "Geen dagen wachten op installateurs of apparatuur. Na je bestelling ontvang je direct je M3U-afspeellijst en Xtream Codes inloggegevens via e-mail en WhatsApp.",
+    badge: "Geen Wachttijd"
+  },
+  {
+    icon: Trophy,
+    title: "Live Eredivisie & Wereldwijde Sport",
+    description: "Volg al je favoriete sportwedstrijden, motorsport, voetbalcompetities en live toernooien in vloeiende 60 FPS zonder restricties of regionale blokkades.",
+    badge: "Voor Sportliefhebbers"
+  },
+  {
+    icon: Smartphone,
+    title: "100% Universele Apparaatcompatibiliteit",
+    description: "Kijk moeiteloos op Samsung & LG Smart TV's, Android TV, Firestick, Apple TV, iPhone, iPad, Windows PC, Mac en MAG-mediaspelers met elke bekende IPTV app.",
+    badge: "Multi-Platform"
+  },
+  {
+    icon: ListOrdered,
+    title: "Interactieve EPG & Terugkijkfunctie",
+    description: "Raadpleeg overzichtelijk het actuele programma-overzicht met onze ingebouwde Elektronische Programmagids (EPG). Mis nooit meer een belangrijk moment.",
+    badge: "Handige TV-Gids"
+  },
+  {
+    icon: ShieldCheck,
+    title: "Veilige & Betrouwbare Betaling",
+    description: "Veilig en vertrouwd afrekenen via Bancontact, Creditcard of discreet via Crypto (met 10% extra korting). Directe activatie van je account.",
+    badge: "100% Veilig"
+  },
+  {
+    icon: Headphones,
+    title: "24/7 Nederlandstalige Klantenservice",
+    description: "Ons team staat dag en nacht voor je klaar via WhatsApp en Telegram om je te assisteren bij installatie, app-configuratie en technische vragen.",
+    badge: "Direct Contact"
+  }
+];
+---
+
+<section id="features" class="py-20 md:py-28 relative overflow-hidden bg-[#0d0d14]">
+  <!-- Background glow -->
+  <div class="absolute -top-40 right-0 w-96 h-96 bg-[#7c4ec2]/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-40 left-0 w-96 h-96 bg-[#e94560]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-[#38bdf8] uppercase tracking-wider">
+        Waarom IPTV Nederlandse?
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        De Nieuwe Standaard in <span class="text-gradient">IPTV Streaming</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-400">
+        Wanneer je een <strong>iptv met abonnement</strong> kiest, wil je stabiliteit en gebruiksgemak. Ontdek waarom duizenden Nederlandse huishoudens dagelijks kiezen voor onze servers.
+      </p>
+    </div>
+
+    <!-- Features 8-Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map((item, index) => {
+        const IconComponent = item.icon;
+        return (
+          <div class="glass-card rounded-2xl p-6 relative group hover:border-[#7c4ec2]/50 hover:bg-white/[0.06] transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7c4ec2]/20 to-[#e94560]/20 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:from-[#7c4ec2] group-hover:to-[#e94560] transition-all duration-300">
+                  <IconComponent class="w-6 h-6 text-[#d1b3ff] group-hover:text-white transition-colors duration-300" />
+                </div>
+                <span class="text-[11px] font-bold text-[#38bdf8] bg-[#38bdf8]/10 px-2.5 py-1 rounded-full border border-[#38bdf8]/20">
+                  {item.badge}
+                </span>
+              </div>
+              
+              <h3 class="text-lg font-bold text-white mb-2.5 group-hover:text-[#d1b3ff] transition-colors duration-200">
+                {item.title}
+              </h3>
+              
+              <p class="text-sm text-gray-400 leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs font-semibold text-gray-400 group-hover:text-white transition-colors">
+              <CheckCircle2 class="w-4 h-4 text-emerald-400" />
+              <span>Inbegrepen in elk pakket</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Bottom Mini-Banner inside feature section -->
+    <div class="mt-12 p-6 rounded-2xl glass-card-glow border border-[#7c4ec2]/30 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="space-y-1">
+        <h4 class="text-lg font-bold text-white">Twijfel je of jouw apparaat ondersteund wordt?</h4>
+        <p class="text-sm text-gray-300">Onze klantenservice helpt je direct met het instellen van IBO Player, IPTV Smarters Pro of TiviMate.</p>
+      </div>
+      <a 
+        href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20welke%20app%20is%20het%20beste%20voor%20mijn%20televisie?" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#e94560] hover:bg-[#ff5778] text-white font-bold text-sm shadow-lg shadow-[#e94560]/30 shrink-0 transition-all"
+      >
+        Vraag App Advies via WhatsApp
+      </a>
+    </div>
+
+  </div>
+</section>

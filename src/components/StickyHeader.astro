@@ -1,0 +1,143 @@
+---
+import { Menu, X, Tv, ArrowRight } from 'lucide-astro';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[#7c4ec2] rounded-lg p-1" aria-label="IPTV Nederlandse Homepage">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#7c4ec2] to-[#e94560] p-0.5 flex items-center justify-center shadow-lg shadow-[#7c4ec2]/20 group-hover:scale-105 transition-transform duration-300">
+          <div class="w-full h-full bg-[#0a0a0f] rounded-[10px] flex items-center justify-center">
+            <Tv class="w-6 h-6 text-[#d1b3ff] group-hover:text-[#e94560] transition-colors duration-300" />
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
+            IPTV <span class="text-[#e94560]">Nederlandse</span>
+          </span>
+          <span class="text-[10px] font-semibold tracking-wider text-[#38bdf8] uppercase">#1 Premium Stream Hub</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Hoofdnavigatie">
+        <a href="/#pricing" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:text-[#e94560]">
+          Prijzen
+        </a>
+        <a href="/#features" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:text-[#e94560]">
+          Voordelen
+        </a>
+        <a href="/#process" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:text-[#e94560]">
+          Hoe Het Werkt
+        </a>
+        <a href="/#devices" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:text-[#e94560]">
+          Apparaten
+        </a>
+        <a href="/guides" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:text-[#e94560]">
+          Gidsen & Tips
+        </a>
+        <a href="/referral" class="text-sm font-medium text-[#38bdf8] hover:text-[#7dd3fc] transition-colors duration-200 focus:outline-none">
+          Referral Bonus
+        </a>
+        <a href="/contact" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 focus:outline-none focus:text-[#e94560]">
+          Contact
+        </a>
+      </nav>
+
+      <!-- Header CTA Action Button -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a 
+          href="/#pricing" 
+          class="relative inline-flex items-center justify-center p-0.5 overflow-hidden rounded-full font-bold text-xs uppercase tracking-wider group focus:outline-none focus:ring-2 focus:ring-[#e94560]"
+          aria-label="Ga direct naar prijzen en activeer abonnement"
+        >
+          <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-[#7c4ec2] via-[#e94560] to-[#38bdf8] group-hover:scale-105 transition-transform duration-300"></span>
+          <span class="relative px-5 py-2.5 transition-all ease-in duration-200 bg-[#0a0a0f] rounded-full group-hover:bg-opacity-0 text-white flex items-center gap-2">
+            Direct Activeren
+            <ArrowRight class="w-4 h-4 text-[#e94560] group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
+          </span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex md:hidden">
+        <button 
+          id="mobile-menu-btn" 
+          type="button" 
+          class="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#7c4ec2]" 
+          aria-expanded="false" 
+          aria-controls="mobile-menu"
+          aria-label="Open hoofdmenu"
+        >
+          <Menu id="menu-icon-open" class="w-6 h-6 block" />
+          <X id="menu-icon-close" class="w-6 h-6 hidden" />
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-[#0a0a0f]/95 border-b border-white/10 backdrop-blur-2xl px-4 pt-4 pb-6 space-y-3">
+    <a href="/#pricing" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-gray-200 hover:text-white hover:bg-white/5">
+      Prijzen & Pakketten
+    </a>
+    <a href="/#features" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-gray-200 hover:text-white hover:bg-white/5">
+      Waarom Ons Kiezen
+    </a>
+    <a href="/#process" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-gray-200 hover:text-white hover:bg-white/5">
+      Hoe Het Werkt
+    </a>
+    <a href="/#devices" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-gray-200 hover:text-white hover:bg-white/5">
+      Ondersteunde Apparaten
+    </a>
+    <a href="/guides" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-gray-200 hover:text-white hover:bg-white/5">
+      Gidsen & Tips
+    </a>
+    <a href="/referral" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-[#38bdf8] hover:bg-white/5">
+      Referral Beloningen
+    </a>
+    <a href="/contact" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-gray-200 hover:text-white hover:bg-white/5">
+      Contact & Support
+    </a>
+    
+    <div class="pt-4 border-t border-white/10 flex flex-col gap-3">
+      <a 
+        href="/#pricing" 
+        class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-[#7c4ec2] to-[#e94560] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#7c4ec2]/30"
+      >
+        Direct IPTV Kopen & Activeren
+        <ArrowRight class="w-4 h-4" />
+      </a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('hidden');
+      iconOpen?.classList.toggle('hidden');
+      iconClose?.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking on any link inside
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        iconOpen?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+      });
+    });
+  }
+</script>

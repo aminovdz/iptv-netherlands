@@ -1,0 +1,202 @@
+---
+import { 
+  Tv, 
+  Mail, 
+  MessageCircle, 
+  Send, 
+  MapPin, 
+  ShieldCheck, 
+  Clock, 
+  CreditCard,
+  CheckCircle2,
+  ExternalLink
+} from 'lucide-astro';
+
+const cities = [
+  { name: 'Amsterdam', slug: 'amsterdam' },
+  { name: 'Rotterdam', slug: 'rotterdam' },
+  { name: 'Den Haag', slug: 'den-haag' },
+  { name: 'Utrecht', slug: 'utrecht' },
+  { name: 'Eindhoven', slug: 'eindhoven' },
+  { name: 'Groningen', slug: 'groningen' },
+  { name: 'Tilburg', slug: 'tilburg' },
+  { name: 'Almere', slug: 'almere' },
+  { name: 'Breda', slug: 'breda' },
+  { name: 'Nijmegen', slug: 'nijmegen' }
+];
+
+const comparisons = [
+  { name: 'IPTV Nederlandse vs IPTV Koning', path: '/compare/iptv-nederlandse-vs-iptv-koning' },
+  { name: 'IPTV Nederlandse vs IPTV Totaal Kopen', path: '/compare/iptv-nederlandse-vs-iptvtotaalkopen' },
+  { name: 'IPTV Nederlandse vs Koop IPTV', path: '/compare/iptv-nederlandse-vs-koop-iptv' }
+];
+---
+
+<footer class="bg-[#07070b] border-t border-white/10 text-gray-400 text-sm relative overflow-hidden" role="contentinfo">
+  <!-- Ambient background glow -->
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[300px] bg-[#7c4ec2]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Main Footer Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
+      
+      <!-- Col 1: Brand & Bio -->
+      <div class="lg:col-span-2 space-y-5">
+        <a href="/" class="flex items-center gap-3 group focus:outline-none" aria-label="IPTV Nederlandse Startpagina">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c4ec2] to-[#e94560] p-0.5 flex items-center justify-center shadow-lg shadow-[#7c4ec2]/20">
+            <div class="w-full h-full bg-[#0a0a0f] rounded-[10px] flex items-center justify-center">
+              <Tv class="w-5 h-5 text-[#d1b3ff]" />
+            </div>
+          </div>
+          <span class="text-xl font-extrabold text-white tracking-tight">
+            IPTV <span class="text-[#e94560]">Nederlandse</span>
+          </span>
+        </a>
+
+        <p class="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm">
+          Dé toonaangevende specialist voor <strong>IPTV met abonnement</strong> in Nederland en België. Ervaar ultieme stabiliteit met onze anti-freeze servers, 4K beeldkwaliteit en 24/7 directe ondersteuning.
+        </p>
+
+        <!-- Official Support Channels -->
+        <div class="space-y-2.5 pt-2 text-xs">
+          <div class="flex items-center gap-2 text-gray-300">
+            <Mail class="w-4 h-4 text-[#38bdf8] shrink-0" />
+            <span>Verkoop: <a href="mailto:contact@iptvnederlandse.store" class="hover:text-white transition-colors">contact@iptvnederlandse.store</a></span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <Mail class="w-4 h-4 text-[#38bdf8] shrink-0" />
+            <span>Support: <a href="mailto:support@castvera.com" class="hover:text-white transition-colors">support@castvera.com</a></span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <MessageCircle class="w-4 h-4 text-emerald-400 shrink-0" />
+            <span>WhatsApp: <a href="https://wa.me/18036582620" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">+1 (803) 658-2620</a></span>
+          </div>
+        </div>
+
+        <!-- Social Channels Buttons -->
+        <div class="flex items-center gap-3 pt-3">
+          <a 
+            href="https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="px-3 py-1.5 rounded-lg bg-emerald-950/50 border border-emerald-500/30 text-emerald-300 text-xs font-semibold hover:bg-emerald-900/60 transition-all flex items-center gap-1.5"
+            aria-label="Volg ons WhatsApp Kanaal"
+          >
+            <MessageCircle class="w-3.5 h-3.5" />
+            WhatsApp Kanaal
+          </a>
+          <a 
+            href="https://t.me/castvera_com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="px-3 py-1.5 rounded-lg bg-sky-950/50 border border-sky-500/30 text-sky-300 text-xs font-semibold hover:bg-sky-900/60 transition-all flex items-center gap-1.5"
+            aria-label="Word lid van ons Telegram Kanaal"
+          >
+            <Send class="w-3.5 h-3.5" />
+            Telegram Kanaal
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation & Product -->
+      <div class="space-y-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block">Navigatie</span>
+        <ul class="space-y-2.5 text-xs">
+          <li><a href="/#pricing" class="hover:text-white transition-colors">Prijzen & Pakketten</a></li>
+          <li><a href="/#features" class="hover:text-white transition-colors">Anti-Freeze Voordelen</a></li>
+          <li><a href="/#process" class="hover:text-white transition-colors">Hoe Het Werkt (5 Min)</a></li>
+          <li><a href="/#devices" class="hover:text-white transition-colors">Ondersteunde Apparaten</a></li>
+          <li><a href="/guides" class="hover:text-white transition-colors">Kennisbank & Gidsen</a></li>
+          <li><a href="/referral" class="hover:text-[#38bdf8] font-semibold transition-colors">Referral Programma (Verdien Maanden)</a></li>
+          <li><a href="/contact" class="hover:text-white transition-colors">Klantenservice</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Local SEO Dutch Cities -->
+      <div class="space-y-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block flex items-center gap-1.5">
+          <MapPin class="w-3.5 h-3.5 text-[#e94560]" />
+          Lokale Dekking
+        </span>
+        <ul class="grid grid-cols-2 gap-x-2 gap-y-2 text-xs">
+          {cities.map((city) => (
+            <li>
+              <a href={`/locations/${city.slug}`} class="hover:text-white transition-colors flex items-center gap-1">
+                <span>•</span>
+                <span>{city.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 4: Comparisons & Legal -->
+      <div class="space-y-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block">Vergelijkingen & Info</span>
+        <ul class="space-y-2 text-xs">
+          {comparisons.map((comp) => (
+            <li>
+              <a href={comp.path} class="hover:text-white transition-colors">
+                {comp.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <span class="text-xs font-bold text-white uppercase tracking-wider block pt-3">Juridisch & Beleid</span>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/privacy" class="hover:text-white transition-colors">Privacybeleid</a></li>
+          <li><a href="/terms" class="hover:text-white transition-colors">Algemene Voorwaarden</a></li>
+          <li>
+            <a href="/refund" class="text-amber-400 hover:text-amber-300 font-semibold transition-colors flex items-center gap-1">
+              <span>Retourbeleid (24 Uur)</span>
+            </a>
+          </li>
+          <li><a href="/dmca" class="hover:text-white transition-colors">DMCA Beleid</a></li>
+          <li><a href="/disclaimer" class="hover:text-white transition-colors">Disclaimer</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- National Coverage Interactive Box (Nederland & Vlaanderen) -->
+    <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-gray-400">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+          <MapPin class="w-5 h-5 text-emerald-400" />
+        </div>
+        <div>
+          <span class="font-bold text-white block text-sm">Landelijke Dekking Nederland & België</span>
+          <span>Geoptimaliseerde glasvezel- en DSL-routes voor Ziggo, KPN, Odido, Delta en Proximus.</span>
+        </div>
+      </div>
+
+      <!-- Payment Icons Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white font-bold text-xs">
+          🇧🇪 Bancontact
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white font-bold text-xs">
+          💳 Visa / Mastercard
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[#38bdf8] font-bold text-xs">
+          ₿ Crypto (BTC / USDT)
+        </span>
+        <span class="px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold text-xs">
+          🔒 SSL Beveiligd
+        </span>
+      </div>
+    </div>
+
+    <!-- Bottom Bar: Copyright & Compliance Notice -->
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 text-center md:text-left">
+      <p>
+        © {new Date().getFullYear()} <strong>IPTV Nederlandse</strong> (iptvnederlandse.store). Alle rechten voorbehouden.
+      </p>
+      <p class="max-w-md text-[11px] text-gray-500">
+        Disclaimer: Wij hosten of zenden zelf geen auteursrechtelijk beschermde streams uit. Deze dienst levert uitsluitend technische gateway- en middleware-toegangsfaciliteiten voor particuliere mediaspelers.
+      </p>
+    </div>
+
+  </div>
+</footer>

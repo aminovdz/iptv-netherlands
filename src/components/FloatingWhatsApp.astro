@@ -1,0 +1,34 @@
+---
+import { MessageCircle } from 'lucide-astro';
+---
+
+<div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+  
+  <!-- Interactive Chat Prompt Tooltip -->
+  <div 
+    id="whatsapp-tooltip"
+    class="hidden md:flex items-center gap-2 py-2 px-3.5 rounded-full glass-card-glow border border-emerald-500/30 text-xs font-semibold text-white shadow-xl animate-fade-in"
+  >
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+    <span>Direct hulp nodig? <strong>Chat met ons</strong></span>
+  </div>
+
+  <!-- WhatsApp Action Floating Button -->
+  <a 
+    href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20ik%20heb%20een%20vraag%20over%20een%20IPTV%20met%20abonnement."
+    target="_blank"
+    rel="noopener noreferrer"
+    class="w-14 h-14 rounded-full bg-gradient-to-tr from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white flex items-center justify-center shadow-2xl shadow-emerald-900/50 hover:scale-110 active:scale-95 transition-all duration-300 relative group focus:outline-none focus:ring-4 focus:ring-emerald-500/50"
+    aria-label="Start direct een chatgesprek op WhatsApp"
+  >
+    <!-- Ripple animation ring -->
+    <span class="absolute inset-0 rounded-full bg-emerald-400 opacity-20 group-hover:animate-ping pointer-events-none"></span>
+
+    <!-- WhatsApp Lucide Icon -->
+    <MessageCircle class="w-7 h-7 fill-current" />
+
+    <!-- Online badge dot -->
+    <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-emerald-300 border-2 border-[#0a0a0f] rounded-full"></span>
+  </a>
+
+</div>

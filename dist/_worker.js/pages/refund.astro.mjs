@@ -1,0 +1,49 @@
+globalThis.process ??= {}; globalThis.process.env ??= {};
+import { c as createComponent, r as renderComponent, m as maybeRenderHead, a as renderTemplate, b as createAstro } from '../chunks/astro/server_CBvyUju7.mjs';
+import { g as $$, $ as $$Layout, a as $$StickyHeader, c as $$MessageCircle, d as $$FloatingWhatsApp, e as $$Footer } from '../chunks/FloatingWhatsApp_7f_lhg-5.mjs';
+import { $ as $$Clock } from '../chunks/Clock_CDbXE4Pl.mjs';
+import { $ as $$ShieldCheck } from '../chunks/ShieldCheck_hM5ZieHG.mjs';
+import { $ as $$CheckCircle2 } from '../chunks/CheckCircle2_B0yVlM4b.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$Astro = createAstro("https://iptvnederlandse.store");
+const $$AlertTriangle = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$AlertTriangle;
+  return renderTemplate`${renderComponent($$result, "Layout", $$, { "iconName": "triangle-alert", ...Astro2.props }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path> <path d="M12 9v4"></path> <path d="M12 17h.01"></path> ` })}`;
+}, "/Users/Mc/Documents/antigravity/IPTV netherlands/node_modules/lucide-astro/dist/AlertTriangle.astro", void 0);
+
+const $$Refund = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Retourbeleid & 24-Uurs Geld-Terug Garantie", "description": "Lees het offici\xEBle retour- en restitutiebeleid van IPTV Nederlandse. Wij bieden een strikte 24-uurs tevredenheidsgarantie op alle abonnementen." }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "StickyHeader", $$StickyHeader, {})} ${maybeRenderHead()}<main class="pt-32 pb-24 relative overflow-hidden bg-[#0a0a0f] min-h-screen"> <!-- Ambient background --> <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-[#e94560]/10 rounded-full blur-3xl pointer-events-none"></div> <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"> <!-- Page Header --> <div class="text-center mb-12 space-y-3"> <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e94560]/15 border border-[#e94560]/30 text-[#ff758f] text-xs font-bold uppercase tracking-wider"> ${renderComponent($$result2, "Clock", $$Clock, { "class": "w-3.5 h-3.5" })}
+Strikte 24-Uur Garantie
+</div> <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+Retour- & <span class="text-gradient">Restitutiebeleid</span> </h1> <p class="text-xs sm:text-sm text-gray-400">Transparante regels omtrent herroeping en restituties</p> </div> <!-- Core Callout Box --> <div class="mb-8 p-6 rounded-3xl glass-card-glow border-2 border-[#e94560] space-y-3 text-center sm:text-left"> <div class="flex flex-col sm:flex-row items-center gap-4"> <div class="w-14 h-14 rounded-2xl bg-[#e94560]/20 border border-[#e94560]/40 flex items-center justify-center shrink-0"> ${renderComponent($$result2, "ShieldCheck", $$ShieldCheck, { "class": "w-7 h-7 text-[#ff758f]" })} </div> <div> <h2 class="text-xl font-bold text-white">24-Uurs Tevredenheidsgarantie</h2> <p class="text-sm text-gray-300">
+Bij <strong>IPTV Nederlandse</strong> hanteren wij een <strong>strikte bedenktijd van 24 uur</strong> na het moment van aankoop. Binnen dit tijdsbestek kun je een volledige terugbetaling aanvragen indien de dienst technisch niet naar behoren functioneert.
+</p> </div> </div> </div> <!-- Detailed Terms --> <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 space-y-8 text-sm sm:text-base text-gray-300 leading-relaxed"> <section class="space-y-3"> <h3 class="text-lg font-bold text-white flex items-center gap-2"> ${renderComponent($$result2, "CheckCircle2", $$CheckCircle2, { "class": "w-5 h-5 text-emerald-400" })}
+1. Voorwaarden voor Restitutie (Binnen 24 Uur)
+</h3> <p>
+Omdat onze IPTV-diensten direct geleverde digitale content en actieve serverlicenties betreffen, is herroeping mogelijk onder de volgende duidelijke voorwaarden:
+</p> <ul class="list-disc pl-6 space-y-2 text-gray-400 text-sm"> <li>Het verzoek tot restitutie wordt <strong>binnen exact 24 uur na het tijdstip van aankoop</strong> schriftelijk ingediend via onze WhatsApp support of per e-mail.</li> <li>Er is sprake van een aantoonbaar technisch defect of onoplosbare compatibiliteitsfout met jouw apparaat die niet door ons supportteam binnen 24 uur kan worden verholpen.</li> <li>Je hebt medewerking verleend aan het controleren van de server- en app-instellingen via onze helpdesk.</li> </ul> </section> <section class="space-y-3"> <h3 class="text-lg font-bold text-white flex items-center gap-2"> ${renderComponent($$result2, "AlertTriangle", $$AlertTriangle, { "class": "w-5 h-5 text-amber-400" })}
+2. Uitsluiting na Verstrijken van 24 Uur
+</h3> <p>
+Na het verstrijken van de termijn van <strong>24 uur</strong> na bestelling is restitutie <strong>niet meer mogelijk</strong>. Aangezien digitale serverinloggegevens direct worden geactiveerd en gereserveerd op onze hardwarecapaciteit, kan een actief abonnement na deze termijn niet meer worden geannuleerd of tussentijds worden terugbetaald.
+</p> </section> <section class="space-y-3"> <h3 class="text-lg font-bold text-white flex items-center gap-2"> ${renderComponent($$result2, "Clock", $$Clock, { "class": "w-5 h-5 text-[#38bdf8]" })}
+3. Hoe Vraag je een Restitutie Aan?
+</h3> <p>
+Volg deze eenvoudige stappen binnen 24 uur na jouw bestelling:
+</p> <ol class="list-decimal pl-6 space-y-2 text-gray-400 text-sm"> <li>Neem contact op met onze WhatsApp helpdesk op <a href="https://wa.me/18036582620" class="text-emerald-400 font-bold hover:underline">+1 (803) 658-2620</a> of stuur een e-mail naar <a href="mailto:support@castvera.com" class="text-[#7c4ec2] font-bold hover:underline">support@castvera.com</a>.</li> <li>Vermeld jouw bestelnummer, e-mailadres en de exacte reden of foutmelding.</li> <li>Na goedkeuring wordt het bedrag binnen 1 tot 3 werkdagen teruggestort via de oorspronkelijke betaalmethode (zoals Bancontact of Creditcard).</li> </ol> </section> <!-- Direct WhatsApp Help Callout --> <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"> <span class="text-xs text-gray-400">Heb je technische ondersteuning nodig voor je account?</span> <a href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20ik%20heb%20een%20vraag%20over%20mijn%20bestelling%20of%20restitutie." target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-lg"> ${renderComponent($$result2, "MessageCircle", $$MessageCircle, { "class": "w-4 h-4" })} <span>Neem Direct Contact Op via WhatsApp</span> </a> </div> </div> </div> </main> ${renderComponent($$result2, "FloatingWhatsApp", $$FloatingWhatsApp, {})} ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
+}, "/Users/Mc/Documents/antigravity/IPTV netherlands/src/pages/refund.astro", void 0);
+
+const $$file = "/Users/Mc/Documents/antigravity/IPTV netherlands/src/pages/refund.astro";
+const $$url = "/refund";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$Refund,
+	file: $$file,
+	url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

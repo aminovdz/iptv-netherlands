@@ -1,0 +1,114 @@
+---
+import { HelpCircle, ChevronDown, MessageCircle, ShieldCheck } from 'lucide-astro';
+
+const faqs = [
+  {
+    question: "Wat is IPTV met abonnement en hoe werkt het precies?",
+    answer: "IPTV staat voor Internet Protocol Television. In plaats van traditionele kabel of satelliet ontvang je tv-streams direct via je internetverbinding. Met een abonnement van IPTV Nederlandse krijg je toegang tot onze high-speed anti-freeze servers, waardoor je op je Smart TV, smartphone, tablet of computer kunt genieten van live televisie, sport en films in 4K en FHD kwaliteit."
+  },
+  {
+    question: "Hoe snel wordt mijn IPTV abonnement geactiveerd na betaling?",
+    answer: "Vrijwel direct! Ons geautomatiseerde systeem verwerkt je bestelling onmiddellijk. Binnen 5 minuten na afronding van je betaling ontvang je jouw persoonlijke M3U-afspeellijst, EPG-link en Xtream Codes inloggegevens via e-mail en WhatsApp."
+  },
+  {
+    question: "Welke veilige betaalmethoden worden geaccepteerd?",
+    answer: "Je kunt jouw bestelling eenvoudig en veilig afronden met alle gangbare creditcards (Visa/Mastercard), Bancontact of discreet via Crypto (zoals Bitcoin of USDT), waarbij je profiteert van 10% extra korting. De inloggegevens worden direct na betaling klaargezet."
+  },
+  {
+    question: "Wat houdt de gratis IBO Player bonus in bij het 12-maanden pakket?",
+    answer: "Bij aankoop van ons 12-maanden abonnement (€35,-) verzorgen wij de volledige activatie van de premium IBO Player applicatie (t.w.v. €15,-) kosteloos voor jou. IBO Player staat bekend als één van de snelste en meest gebruiksvriendelijke mediaspelers voor Samsung, LG en Android Smart TV's."
+  },
+  {
+    question: "Welke apparaten en apps zijn compatibel met jullie service?",
+    answer: "Onze IPTV streams zijn compatibel met alle gangbare apparaten: Samsung en LG Smart TV's, Android TV, Amazon Fire TV Stick, Apple TV, iPhone, iPad, Android telefoons/tablets, Windows PC's, Mac en MAG-mediaspelers. Je kunt populaire apps gebruiken zoals IBO Player, IPTV Smarters Pro, TiviMate, Smart IPTV en XCIPTV."
+  },
+  {
+    question: "Wat is het retourbeleid bij IPTV Nederlandse?",
+    answer: "Voor alle details omtrent ons herroepings- en retourbeleid verwijzen we je graag naar onze officiële retourbeleid pagina. Mocht je vragen hebben over jouw bestelling, dan staat onze klantenservice 24/7 klaar via WhatsApp om je direct te assisteren."
+  },
+  {
+    question: "Heb ik een VPN nodig om IPTV te gebruiken?",
+    answer: "Nee, in de meeste gevallen is een VPN niet nodig omdat onze streams via beveiligde, versleutelde protocollen lopen. Onze service is echter 100% compatibel met alle bekende VPN-diensten mocht je extra privacy op prijs stellen."
+  },
+  {
+    question: "Blijven de streams soepel werken tijdens drukke Eredivisie sportwedstrijden?",
+    answer: "Ja! Wij maken gebruik van dedicated Europese servers met load balancing en geavanceerde Anti-Freeze technologie. Hierdoor blijft de stream stabiel op 60 frames per seconde, zelfs tijdens piekmomenten en grote live wedstrijden."
+  },
+  {
+    question: "Hoe kan ik contact opnemen voor ondersteuning of installatiehulp?",
+    answer: "Onze klantenservice is 24/7 bereikbaar via WhatsApp (+1 803 658 2620), Telegram (@castvera_com) en per e-mail via support@castvera.com of contact@iptvnederlandse.store. We helpen je graag stap voor stap bij de installatie."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<section id="faq" class="py-20 md:py-28 relative overflow-hidden bg-[#0a0a0f]">
+  <!-- FAQ JSON-LD Structured Data Schema -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-[#38bdf8] uppercase tracking-wider">
+        <HelpCircle class="w-3.5 h-3.5 text-[#38bdf8]" />
+        Veelgestelde Vragen
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        Alles over Jouw <span class="text-gradient">IPTV met Abonnement</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-400">
+        Heb je vragen over de werking, installatie of betaling? Hier vind je direct antwoord op de meest gestelde vragen.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion List -->
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details class="glass-card rounded-2xl group border border-white/10 transition-all duration-200 open:border-[#7c4ec2]/50 open:bg-white/[0.04]">
+          <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none focus:outline-none focus:ring-2 focus:ring-[#7c4ec2] rounded-2xl">
+            <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-[#d1b3ff] transition-colors pr-4">
+              {faq.question}
+            </h3>
+            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-open:rotate-180 transition-transform duration-300">
+              <ChevronDown class="w-4 h-4 text-gray-400 group-open:text-[#e94560]" />
+            </div>
+          </summary>
+          <div class="px-5 pb-6 sm:px-6 sm:pb-6 text-sm text-gray-300 leading-relaxed border-t border-white/5 pt-4">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Still have questions? Help Card -->
+    <div class="mt-12 p-6 rounded-2xl glass-card-glow border border-[#7c4ec2]/30 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div>
+        <h4 class="text-base font-bold text-white">Staat jouw vraag er niet tussen?</h4>
+        <p class="text-xs text-gray-300 mt-1">Ons deskundige team staat klaar om je binnen enkele minuten te helpen via WhatsApp.</p>
+      </div>
+      <a 
+        href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20ik%20heb%20een%20vraag%20over%20jullie%20IPTV%20abonnement."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-900/40 shrink-0 transition-all"
+      >
+        <MessageCircle class="w-4 h-4" />
+        <span>Chat Direct op WhatsApp</span>
+      </a>
+    </div>
+
+  </div>
+</section>

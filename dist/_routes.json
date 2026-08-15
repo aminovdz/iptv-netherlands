@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/_astro/*",
+    "/favicon.svg",
+    "/og-image.svg",
+    "/robots.txt",
+    "/images/*",
+    "/compare/*",
+    "/guides/*",
+    "/locations/*"
+  ]
+}

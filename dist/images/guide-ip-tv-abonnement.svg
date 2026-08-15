@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="g3Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="100%" stop-color="#14141e"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#E94560"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#g3Bg)"/>
+  <circle cx="400" cy="180" r="160" fill="#E94560" opacity="0.12"/>
+  
+  <rect x="40" y="40" width="720" height="370" rx="24" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  
+  <!-- Trophy & Sports Visual -->
+  <path d="M350 120 H450 V180 C450 215 425 240 400 240 C375 240 350 215 350 180 Z" fill="#0A0A0F" stroke="url(#goldGrad)" stroke-width="3"/>
+  <path d="M330 140 H350 V170 H330 C320 170 310 160 310 150 C310 140 320 140 330 140 Z" stroke="url(#goldGrad)" stroke-width="3" fill="none"/>
+  <path d="M470 140 H450 V170 H470 C480 170 490 160 490 150 C490 140 480 140 470 140 Z" stroke="url(#goldGrad)" stroke-width="3" fill="none"/>
+  <rect x="380" y="240" width="40" height="30" fill="url(#goldGrad)"/>
+  <rect x="360" y="270" width="80" height="15" rx="4" fill="url(#goldGrad)"/>
+
+  <text x="400" y="330" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="24" font-weight="800">
+    Beste IP TV Abonnement Vergelijking
+  </text>
+  <text x="400" y="365" text-anchor="middle" fill="#10B981" font-family="system-ui, sans-serif" font-size="14" font-weight="600">
+    60FPS Eredivisie Sport • IBO Player Bonus
+  </text>
+</svg>

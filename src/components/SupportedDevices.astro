@@ -1,0 +1,113 @@
+---
+import { Tv, Smartphone, Laptop, Box, Cast, Check, ShieldCheck } from 'lucide-astro';
+
+const devices = [
+  {
+    icon: Tv,
+    title: "Smart TV's",
+    subtitle: "Samsung Tizen, LG webOS, Philips, Sony Android TV, Google TV",
+    apps: ["IBO Player", "IPTV Smarters Pro", "Smart IPTV", "Nanomid Player"]
+  },
+  {
+    icon: Cast,
+    title: "Streaming Sticks & Spelers",
+    subtitle: "Amazon Fire TV Stick, Google Chromecast met Google TV, Nvidia Shield",
+    apps: ["TiviMate", "IPTV Smarters", "XCIPTV Player", "Televizo"]
+  },
+  {
+    icon: Smartphone,
+    title: "Smartphones & Tablets",
+    subtitle: "Apple iPhone, iPad (iOS & iPadOS), Android telefoons & tablets",
+    apps: ["GSE Smart IPTV", "247 IPTV Player", "Smarters Player Lite", "VLC"]
+  },
+  {
+    icon: Laptop,
+    title: "Computers & Laptops",
+    subtitle: "Windows 10/11 PC, Apple Mac (macOS), Linux distributies",
+    apps: ["IPTV Smarters Web/Desktop", "VLC Media Player", "SFVIP Player"]
+  },
+  {
+    icon: Box,
+    title: "Dedicated IPTV Boxen",
+    subtitle: "Formuler (Z8/Z10/Z11), MAG (Infomir 322/421/524), Amiko, BuzzTV",
+    apps: ["MyTVOnline 2 & 3", "Ministra Portal", "Stalker Portal Interface"]
+  }
+];
+---
+
+<section id="devices" class="py-20 md:py-28 relative overflow-hidden bg-[#0a0a0f]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-[#38bdf8] uppercase tracking-wider">
+        100% Compatibel
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        Kijk op Al Jouw <span class="text-gradient">Favoriete Schermen</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-400">
+        Ons <strong>IPTV met abonnement</strong> werkt naadloos op ieder modern apparaat. Je ontvangt zowel M3U-afspeellijsten als Xtream Codes API-inloggegevens.
+      </p>
+    </div>
+
+    <!-- Devices Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {devices.map((device) => {
+        const IconComponent = device.icon;
+        return (
+          <div class="glass-card rounded-3xl p-7 hover:border-white/20 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#7c4ec2]/20 to-[#38bdf8]/20 border border-white/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <IconComponent class="w-6 h-6 text-[#38bdf8]" />
+              </div>
+
+              <h3 class="text-lg font-bold text-white mb-1.5">{device.title}</h3>
+              <p class="text-xs text-gray-400 mb-5 leading-relaxed">{device.subtitle}</p>
+
+              <!-- App tags -->
+              <div class="space-y-2">
+                <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">Aanbevolen Applicaties:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  {device.apps.map((app) => (
+                    <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-gray-300 font-medium">
+                      {app}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-emerald-400 font-semibold">
+              <Check class="w-4 h-4" />
+              <span>Inclusief eenvoudige installatiehandleiding</span>
+            </div>
+          </div>
+        );
+      })}
+
+      <!-- Bonus App Callout Card: IBO Player -->
+      <div class="glass-card-glow rounded-3xl p-7 border border-[#e94560]/40 flex flex-col justify-between relative overflow-hidden">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e94560]/20 text-[#ff758f] text-[11px] font-bold uppercase tracking-wider mb-4">
+            Gratis Bonus Deal
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">IBO Player Bonus Inbegrepen</h3>
+          <p class="text-xs text-gray-300 leading-relaxed mb-4">
+            Kies je voor ons 12-maanden abonnement? Dan verzorgen wij de volledige activatie van de razendsnelle <strong>IBO Player applicatie</strong> helemaal gratis voor jou!
+          </p>
+        </div>
+
+        <a 
+          href="https://wa.me/18036582620?text=Hallo%20IPTV%20Nederlandse,%20hoe%20werkt%20de%20gratis%20IBO%20Player%20bonus?" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="w-full py-3 rounded-xl bg-[#e94560] hover:bg-[#ff5778] text-white text-center font-bold text-xs shadow-lg shadow-[#e94560]/30 transition-all"
+        >
+          Vraag Activatie Bonus Aan
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

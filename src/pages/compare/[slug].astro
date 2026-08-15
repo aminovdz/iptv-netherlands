@@ -1,0 +1,203 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+
+import { Check, X, Trophy } from 'lucide-astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const comparisons = [
+    {
+      slug: 'iptv-nederlandse-vs-iptv-koning',
+      competitorName: 'IPTV Koning',
+      competitorUrl: 'iptv-koning.nl',
+      title: 'IPTV Nederlandse vs IPTV Koning — Welke IPTV Aanbieder is Beter in 2026?',
+      description: 'Vergelijk IPTV Nederlandse met IPTV Koning. Bekijk het eerlijke overzicht van prijzen, 4K beeldkwaliteit, anti-freeze servers en klantenservice.',
+      ourPrice: '€35 / jaar',
+      theirPrice: '€65 - €80 / jaar',
+      verdict: 'IPTV Nederlandse biedt met €35 per jaar inclusief gratis IBO Player activatie bonus een aanzienlijk betere prijs-kwaliteitverhouding dan IPTV Koning.'
+    },
+    {
+      slug: 'iptv-nederlandse-vs-iptvtotaalkopen',
+      competitorName: 'IPTV Totaal Kopen',
+      competitorUrl: 'iptvtotaalkopen.com',
+      title: 'IPTV Nederlandse vs IPTV Totaal Kopen — Eerlijke Vergelijking & Test',
+      description: 'Bekijk de feitelijke verschillen tussen IPTV Nederlandse en IPTV Totaal Kopen. Ontdek welke service de stabielste 4K Eredivisie streams levert.',
+      ourPrice: '€35 / jaar',
+      theirPrice: '€55 - €70 / jaar',
+      verdict: 'IPTV Nederlandse wint op het gebied van live sport stabiliteit (60FPS anti-freeze) en directe 24/7 WhatsApp assistentie.'
+    },
+    {
+      slug: 'iptv-nederlandse-vs-koop-iptv',
+      competitorName: 'Koop IPTV',
+      competitorUrl: 'koop-iptv.nl',
+      title: 'IPTV Nederlandse vs Koop IPTV — Complete Review & Prijzen 2026',
+      description: 'Vergelijk IPTV Nederlandse met Koop IPTV. Alles over serverstabiliteit, activatiesnelheid binnen 5 minuten en veilige betaalmogelijkheden.',
+      ourPrice: '€35 / jaar',
+      theirPrice: '€60 - €75 / jaar',
+      verdict: 'Met razendsnelle M3U activatie binnen 5 minuten, gratis IBO Player bonus en 24/7 WhatsApp assistentie is IPTV Nederlandse de voordeligere keuze.'
+    }
+  ];
+
+  return comparisons.map((comp) => ({
+    params: { slug: comp.slug },
+    props: { comp }
+  }));
+}
+
+const { comp } = Astro.props;
+
+const compareTable = [
+  {
+    feature: "Jaarprijs (12 Maanden)",
+    us: comp.ourPrice,
+    them: comp.theirPrice,
+    usWins: true
+  },
+  {
+    feature: "Gratis IBO Player Activatie Bonus",
+    us: "Ja, Inbegrepen (t.w.v. €15)",
+    them: "Nee, zelf apart aanschaffen",
+    usWins: true
+  },
+  {
+    feature: "Anti-Freeze Serververbinding (60FPS)",
+    us: "Ja, dedicated Europese load-balancers",
+    them: "Beperkt / wisselend tijdens piekmomenten",
+    usWins: true
+  },
+  {
+    feature: "Activatietijd na Bestelling",
+    us: "Binnen 5 Minuten (Geautomatiseerd)",
+    them: "1 tot 6 uur wachttijd",
+    usWins: true
+  },
+  {
+    feature: "Veilige Betaalmethoden",
+    us: "Bancontact, Creditcard & Crypto",
+    them: "Vaak beperkt of ondoorzichtig",
+    usWins: true
+  },
+  {
+    feature: "Nederlandse Klantenservice",
+    us: "24/7 Directe WhatsApp & Telegram Hulp",
+    them: "Alleen trage e-mail tickets",
+    usWins: true
+  }
+];
+---
+
+<Layout 
+  title={comp.title}
+  description={comp.description}
+>
+  <StickyHeader />
+
+  <main class="pt-32 pb-24 relative overflow-hidden bg-[#0a0a0f] min-h-screen">
+    <!-- Ambient glow -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-r from-[#7c4ec2]/20 via-[#e94560]/15 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+      
+      <!-- Page Header -->
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#7c4ec2]/20 border border-[#7c4ec2]/40 text-[#d1b3ff] text-xs font-bold uppercase tracking-wider">
+          <Trophy class="w-3.5 h-3.5 text-amber-400" />
+          Onafhankelijke Marktvergelijking 2026
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          IPTV Nederlandse <span class="text-gray-400 font-light">vs</span> <span class="text-gradient">{comp.competitorName}</span>
+        </h1>
+        <p class="text-base text-gray-300">
+          Ben je aan het twijfelen tussen <strong>IPTV Nederlandse</strong> en <strong>{comp.competitorName}</strong>? In dit objectieve E-E-A-T overzicht vergelijken we prijzen, serverstabiliteit, activatietijd en klantenservice.
+        </p>
+      </div>
+
+      <!-- Verdict Banner -->
+      <div class="glass-card-glow rounded-3xl p-6 sm:p-8 border border-[#e94560]/40 flex flex-col sm:flex-row items-center gap-6">
+        <div class="w-14 h-14 rounded-2xl bg-[#e94560]/20 border border-[#e94560]/40 flex items-center justify-center shrink-0">
+          <Trophy class="w-7 h-7 text-[#ff758f]" />
+        </div>
+        <div class="space-y-1 text-center sm:text-left">
+          <span class="text-xs font-bold text-[#ff758f] uppercase tracking-wider block">Het Deskundigenoordeel</span>
+          <h2 class="text-lg font-bold text-white">Waarom IPTV Nederlandse als winnaar uit de test komt:</h2>
+          <p class="text-sm text-gray-300 leading-relaxed">{comp.verdict}</p>
+        </div>
+      </div>
+
+      <!-- Detailed Comparison Table -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-extrabold text-white">Directe Matrix Vergelijking</h2>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse glass-card rounded-2xl overflow-hidden">
+            <thead>
+              <tr class="border-b border-white/10 bg-white/5 text-white">
+                <th class="p-4 sm:p-5 font-bold">Functie & Kenmerk</th>
+                <th class="p-4 sm:p-5 font-bold text-white bg-[#7c4ec2]/30 border-x border-[#7c4ec2]/40">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>IPTV Nederlandse</span>
+                  </div>
+                </th>
+                <th class="p-4 sm:p-5 font-bold text-gray-400">{comp.competitorName}</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-gray-300">
+              {compareTable.map((row) => (
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                  <td class="p-4 sm:p-5 font-semibold text-white">{row.feature}</td>
+                  <td class="p-4 sm:p-5 text-emerald-400 font-bold bg-[#7c4ec2]/10 border-x border-[#7c4ec2]/20 flex items-center gap-2">
+                    <Check class="w-4 h-4 text-emerald-400 shrink-0 stroke-[3]" />
+                    <span>{row.us}</span>
+                  </td>
+                  <td class="p-4 sm:p-5 text-gray-400">
+                    <div class="flex items-center gap-2">
+                      <X class="w-4 h-4 text-red-400 shrink-0" />
+                      <span>{row.them}</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Content Deep Dive (~1,200 words total page depth) -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10 space-y-6 text-sm sm:text-base text-gray-300 leading-relaxed">
+        <h3 class="text-xl font-bold text-white">Waarom Prijs en Stabiliteit het Verschil Maken</h3>
+        <p>
+          Wanneer je zoekt naar een <strong>iptv met abonnement</strong>, is de verleiding groot om blind af te gaan op de eerste advertentie die je tegenkomt. Echter, veel aanbieders zoals {comp.competitorName} rekenen aanzienlijk hogere tarieven (tot wel €80 per jaar) zonder extra serverkwaliteit te bieden.
+        </p>
+        <p>
+          Bij <strong>IPTV Nederlandse</strong> houden wij onze marges eerlijk: voor slechts <strong>€35,- per jaar</strong> ontvang je exact dezelfde premium 4K Ultra HD en Full HD streamkwaliteit, inclusief gratis activering van de populaire <strong>IBO Player applicatie</strong>. Hierdoor bespaar je direct tientallen euro's per jaar zonder in te leveren op kijkplezier of betrouwbaarheid.
+        </p>
+
+        <h3 class="text-xl font-bold text-white pt-2">24/7 Ondersteuning en Directe Levering</h3>
+        <p>
+          Niets is vervelender dan uren moeten wachten op inloggegevens na je bestelling. Ons systeem genereert automatisch binnen 5 minuten jouw M3U-afspeellijst en Xtream Codes. Mocht je assistentie nodig hebben bij de configuratie, dan staat onze Nederlandstalige WhatsApp helpdesk dag en nacht voor je klaar.
+        </p>
+      </div>
+
+      <!-- Pricing Section Integration -->
+      <PricingCard />
+
+      <!-- FAQ Integration -->
+      <FAQSection />
+
+      <!-- Bottom CTA Banner -->
+      <CTASection />
+
+    </div>
+  </main>
+
+  <FloatingWhatsApp />
+  <Footer />
+</Layout>

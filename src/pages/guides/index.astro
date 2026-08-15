@@ -1,0 +1,140 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import CTASection from '../../components/CTASection.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { BookOpen, Clock, ArrowRight, Sparkles } from 'lucide-astro';
+
+export const prerender = true;
+
+const guides = await getCollection('guides');
+const sortedGuides = guides.sort((a: CollectionEntry<'guides'>, b: CollectionEntry<'guides'>) => {
+  const dateA = a.data.pubDate || a.data.date || new Date();
+  const dateB = b.data.pubDate || b.data.date || new Date();
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<Layout 
+  title="Kennisbank & IPTV Gidsen — Installatie, Tips & Reviews"
+  description="Bekijk onze complete gidsen en handleidingen voor IPTV met abonnement in Nederland. Leer alles over app-installaties, Smart TV configuraties en stream-optimalisatie."
+>
+  <StickyHeader />
+
+  <main class="pt-32 pb-24 relative overflow-hidden bg-[#0a0a0f] min-h-screen">
+    <!-- Ambient glow -->
+    <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-r from-[#7c4ec2]/20 via-[#38bdf8]/15 to-[#e94560]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+      
+      <!-- Archive Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#38bdf8]/15 border border-[#38bdf8]/30 text-[#38bdf8] text-xs font-bold uppercase tracking-wider">
+          <BookOpen class="w-3.5 h-3.5" />
+          Kennisbank & Expert Gidsen
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          Alles over <span class="text-gradient">IPTV Streaming in Nederland</span>
+        </h1>
+        <p class="text-base text-gray-300">
+          Stap-voor-stap installatiehandleidingen, tips voor buffering-vrij kijken en diepgaande reviews geschreven door onze streaming engineers.
+        </p>
+      </div>
+
+      <!-- Featured Permanent Promotional Banner -->
+      <div class="glass-card-glow rounded-3xl p-6 sm:p-8 border border-[#7c4ec2]/40 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 text-center md:text-left">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e94560]/20 text-[#ff758f] text-xs font-bold uppercase">
+            <Sparkles class="w-3.5 h-3.5" />
+            Aanbevolen Deal 2026
+          </span>
+          <h2 class="text-xl font-bold text-white">Direct Starten met IPTV Nederlandse?</h2>
+          <p class="text-xs sm:text-sm text-gray-300 max-w-xl">
+            Sluit vandaag jouw 12-maanden abonnement af voor slechts <strong>€35,-</strong> en ontvang de <strong>gratis IBO Player activatie bonus</strong> direct via WhatsApp.
+          </p>
+        </div>
+
+        <a 
+          href="/#pricing"
+          class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#7c4ec2] to-[#e94560] text-white font-bold text-xs sm:text-sm shadow-xl shadow-[#7c4ec2]/30 hover:scale-105 transition-all shrink-0 flex items-center gap-2"
+        >
+          <span>Bekijk Jaarpakket Deal</span>
+          <ArrowRight class="w-4 h-4" />
+        </a>
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedGuides.map((guide) => {
+          const dateObj = guide.data.pubDate || guide.data.date || new Date();
+          const formattedDate = dateObj.toLocaleDateString('nl-NL', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+
+          return (
+            <article class="glass-card rounded-3xl p-6 flex flex-col justify-between hover:border-[#7c4ec2]/40 transition-all duration-300 group">
+              <div>
+                {guide.data.heroImage && (
+                  <div class="mb-4 rounded-2xl overflow-hidden border border-white/5 bg-black/40">
+                    <img 
+                      src={guide.data.heroImage} 
+                      alt={`${guide.data.title} - IPTV met abonnement gids`}
+                      class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+                <!-- Category Tag & Read Time -->
+                <div class="flex items-center justify-between text-xs text-gray-400 mb-4">
+                  <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[#38bdf8] font-semibold text-[11px]">
+                    {guide.data.category || 'Gids & Uitleg'}
+                  </span>
+                  <span class="flex items-center gap-1 text-gray-500 text-[11px]">
+                    <Clock class="w-3 h-3" />
+                    {guide.data.readTime || '5 min'}
+                  </span>
+                </div>
+
+                <!-- Article Title -->
+                <h2 class="text-lg font-bold text-white mb-2.5 group-hover:text-[#d1b3ff] transition-colors leading-snug">
+                  <a href={`/guides/${guide.slug}`} class="focus:outline-none">
+                    {guide.data.title}
+                  </a>
+                </h2>
+
+                <!-- Excerpt -->
+                <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6 line-clamp-3">
+                  {guide.data.description}
+                </p>
+              </div>
+
+              <!-- Footer Meta & Read Link -->
+              <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
+                <span class="text-gray-500">{formattedDate}</span>
+                <a 
+                  href={`/guides/${guide.slug}`}
+                  class="text-[#e94560] font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1"
+                  aria-label={`Lees artikel: ${guide.data.title}`}
+                >
+                  <span>Lees Gids</span>
+                  <ArrowRight class="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <CTASection />
+
+    </div>
+  </main>
+
+  <FloatingWhatsApp />
+  <Footer />
+</Layout>

@@ -1,0 +1,96 @@
+---
+import { ShoppingCart, CreditCard, Tv, ArrowRight, Zap, CheckCircle2 } from 'lucide-astro';
+
+const steps = [
+  {
+    number: "01",
+    icon: ShoppingCart,
+    title: "Kies Jouw Gewenste Pakket",
+    description: "Selecteer het gewenste abonnement (1, 3, 6 of 12 maanden met gratis IBO Player bonus) dat het beste aansluit bij jouw kijkwensen.",
+    time: "Stap 1 • 1 minuut"
+  },
+  {
+    number: "02",
+    icon: CreditCard,
+    title: "Veilig Afrekenen & Bevestigen",
+    description: "Reken veilig af via vertrouwde betaalmethodes zoals Bancontact, Creditcard of Crypto. Je transactie is 100% beveiligd via SSL.",
+    time: "Stap 2 • 1 minuut"
+  },
+  {
+    number: "03",
+    icon: Tv,
+    title: "Direct Streamen op je Apparaat",
+    description: "Ontvang direct je M3U-afspeellijst, EPG-link en Xtream Codes inloggegevens via WhatsApp en e-mail. Volg onze 2-minuten installatiegids en geniet direct.",
+    time: "Stap 3 • Binnen 3 minuten"
+  }
+];
+---
+
+<section id="process" class="py-20 md:py-28 relative overflow-hidden bg-[#0d0d14]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-[#38bdf8] uppercase tracking-wider">
+        Eenvoudig & Snel
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        In 3 Stappen Live <span class="text-gradient">Binnen 5 Minuten</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-400">
+        Geen ingewikkelde installaties of wachttijden. Ons geautomatiseerde systeem levert jouw inloggegevens direct na verificatie.
+      </p>
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      {steps.map((step, index) => {
+        const IconComponent = step.icon;
+        return (
+          <div class="glass-card rounded-3xl p-8 relative group hover:border-[#7c4ec2]/50 hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between">
+            
+            <!-- Top Step Number Indicator -->
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#7c4ec2]/20 to-[#e94560]/20 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:from-[#7c4ec2] group-hover:to-[#e94560] transition-all duration-300">
+                <IconComponent class="w-7 h-7 text-[#d1b3ff] group-hover:text-white transition-colors duration-300" />
+              </div>
+              <span class="text-3xl font-black font-mono text-white/10 group-hover:text-[#e94560]/40 transition-colors">
+                {step.number}
+              </span>
+            </div>
+
+            <div>
+              <span class="text-[11px] font-bold text-[#38bdf8] uppercase tracking-wider block mb-2">
+                {step.time}
+              </span>
+              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-[#d1b3ff] transition-colors">
+                {step.title}
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-emerald-400 font-semibold">
+              <CheckCircle2 class="w-4 h-4" />
+              <span>Automatische directe verwerking</span>
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Bottom Action Help -->
+    <div class="mt-12 text-center">
+      <a 
+        href="#pricing" 
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold text-sm border border-white/15 transition-all shadow-lg"
+      >
+        <span>Kies Jouw Abonnement & Start Nu</span>
+        <ArrowRight class="w-4 h-4 text-[#e94560]" />
+      </a>
+    </div>
+
+  </div>
+</section>

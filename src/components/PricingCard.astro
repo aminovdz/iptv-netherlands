@@ -1,0 +1,220 @@
+---
+import { Check, Sparkles, Zap, ShieldCheck, ArrowRight, MessageCircle, CreditCard, Gift } from 'lucide-astro';
+
+const pricingPlans = [
+  {
+    name: "12 Maanden + IBO Player",
+    duration: "12 Maanden",
+    price: "€35",
+    originalPrice: "€69",
+    period: "/ jaar",
+    badge: "Beste Keuze & Meest Populair",
+    isPopular: true,
+    bonus: "Gratis IBO Player Activatie (t.w.v. €15)",
+    description: "Het complete all-in-one pakket met maximale korting en gratis professionele app-activatie.",
+    features: [
+      "Volledige toegang tot 4K & FHD Streams",
+      "Anti-Freeze Serververbinding (99.9% Uptime)",
+      "Live Sport & Eredivisie zonder haperingen",
+      "Elektronische Programmagids (EPG)",
+      "Gratis IBO Player Activatie Bonus",
+      "Directe activatie binnen 5 minuten",
+      "Directe M3U & Xtream Codes Levering",
+      "VIP 24/7 WhatsApp & Telegram Ondersteuning"
+    ],
+    ctaText: "Activeer 12 Maanden Deal",
+    whatsappMsg: "Hallo IPTV Nederlandse, ik wil graag het 12 Maanden + IBO Player Pakket voor €35 bestellen."
+  },
+  {
+    name: "6 Maanden Pakket",
+    duration: "6 Maanden",
+    price: "€20",
+    originalPrice: "€39",
+    period: "/ 6 mnd",
+    badge: "Populair",
+    isPopular: false,
+    bonus: null,
+    description: "Ideaal voor een half jaar zorgeloos kijken in haarscherpe 4K kwaliteit.",
+    features: [
+      "Volledige toegang tot 4K & FHD Streams",
+      "Anti-Freeze Serververbinding",
+      "Live Sport & Eredivisie uitzendingen",
+      "Elektronische Programmagids (EPG)",
+      "Compatibel met alle IPTV apps",
+      "Directe activatie binnen 5 minuten",
+      "Ondersteuning voor alle schermen",
+      "24/7 WhatsApp Klantenservice"
+    ],
+    ctaText: "Bestel 6 Maanden",
+    whatsappMsg: "Hallo IPTV Nederlandse, ik wil graag het 6 Maanden Pakket voor €20 bestellen."
+  },
+  {
+    name: "3 Maanden Pakket",
+    duration: "3 Maanden",
+    price: "€10",
+    originalPrice: "€19",
+    period: "/ kwartaal",
+    badge: null,
+    isPopular: false,
+    bonus: null,
+    description: "Uitstekende flexibele optie voor een heel seizoen aan entertainment.",
+    features: [
+      "Volledige toegang tot 4K & FHD Streams",
+      "Anti-Freeze Technologie",
+      "Live Sport & Voetbalwedstrijden",
+      "Elektronische Programmagids (EPG)",
+      "Compatibel met Smart TV & Mobiel",
+      "Directe activatie binnen 5 minuten",
+      "Snelle M3U configuratie",
+      "24/7 WhatsApp Ondersteuning"
+    ],
+    ctaText: "Bestel 3 Maanden",
+    whatsappMsg: "Hallo IPTV Nederlandse, ik wil graag het 3 Maanden Pakket voor €10 bestellen."
+  },
+  {
+    name: "1 Maand Pakket",
+    duration: "1 Maand",
+    price: "€5",
+    originalPrice: "€9",
+    period: "/ maand",
+    badge: "Flexibel Instappen",
+    isPopular: false,
+    bonus: null,
+    description: "Ontdek onze serverkwaliteit en ervaar de snelheid zonder langdurige verplichtingen.",
+    features: [
+      "Volledige toegang tot 4K & FHD Streams",
+      "Anti-Freeze Technologie",
+      "Live Sport & Eredivisie",
+      "Elektronische Programmagids (EPG)",
+      "Ondersteuning voor alle apps",
+      "Directe activatie binnen 5 minuten",
+      "Instant accountverificatie",
+      "Standaard Klantenservice"
+    ],
+    ctaText: "Bestel 1 Maand",
+    whatsappMsg: "Hallo IPTV Nederlandse, ik wil graag het 1 Maand Pakket voor €5 bestellen."
+  }
+];
+---
+
+<section id="pricing" class="py-20 md:py-28 relative overflow-hidden bg-[#0a0a0f]">
+  <!-- Ambient lighting -->
+  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#7c4ec2]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e94560]/15 border border-[#e94560]/30 text-xs font-bold text-[#ff758f] uppercase tracking-wider">
+        Transparante Tarieven
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        Kies Jouw <span class="text-gradient">IPTV met Abonnement</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-400">
+        Directe activatie zonder verborgen kosten of automatische verlengingen. Start vandaag en geniet direct van ultra-stabiele 4K streaming.
+      </p>
+    </div>
+
+    <!-- Pricing Cards Grid (12-Month First Prominently Displayed) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+      {pricingPlans.map((plan) => (
+        <div class={`rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative ${
+          plan.isPopular 
+            ? 'glass-card-glow border-2 border-[#e94560] shadow-2xl shadow-[#e94560]/20 lg:-translate-y-3' 
+            : 'glass-card hover:border-white/20 hover:bg-white/[0.06]'
+        }`}>
+          
+          {/* Top Badge */}
+          {plan.badge && (
+            <div class={`absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-extrabold tracking-wide uppercase shadow-lg ${
+              plan.isPopular 
+                ? 'bg-gradient-to-r from-[#e94560] to-[#7c4ec2] text-white shadow-[#e94560]/40' 
+                : 'bg-white/10 text-gray-200 border border-white/10 backdrop-blur-md'
+            }`}>
+              {plan.badge}
+            </div>
+          )}
+
+          <div>
+            <!-- Plan Header -->
+            <div class="mb-5 text-center">
+              <h3 class="text-xl font-bold text-white mb-2">{plan.name}</h3>
+              <p class="text-xs text-gray-400 min-h-[36px]">{plan.description}</p>
+            </div>
+
+            <!-- Price Tag -->
+            <div class="text-center py-4 mb-4 border-y border-white/10 bg-white/[0.02] rounded-xl">
+              <div class="flex items-baseline justify-center gap-2">
+                <span class="text-xs text-gray-500 line-through">{plan.originalPrice}</span>
+                <span class="text-4xl font-extrabold text-white tracking-tight">{plan.price}</span>
+                <span class="text-xs text-gray-400 font-medium">{plan.period}</span>
+              </div>
+              <span class="text-[11px] text-emerald-400 font-semibold mt-1 block">Eenmalige betaling • Geen stilzwijgende verlenging</span>
+            </div>
+
+            <!-- Bonus Banner for 12-Month Plan -->
+            {plan.bonus && (
+              <div class="mb-6 p-3 rounded-xl bg-gradient-to-r from-[#7c4ec2]/30 to-[#e94560]/30 border border-[#e94560]/40 flex items-center gap-2.5 text-xs text-white font-bold">
+                <Gift class="w-4 h-4 text-amber-400 shrink-0" />
+                <span>{plan.bonus}</span>
+              </div>
+            )}
+
+            <!-- Features List -->
+            <ul class="space-y-3 mb-8 text-xs text-gray-300">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2.5">
+                  <div class={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                    plan.isPopular ? 'bg-[#e94560] text-white' : 'bg-emerald-500/20 text-emerald-400'
+                  }`}>
+                    <Check class="w-2.5 h-2.5 stroke-[3]" />
+                  </div>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Action CTA -->
+          <div class="space-y-3 pt-2">
+            <a 
+              href={`https://wa.me/18036582620?text=${encodeURIComponent(plan.whatsappMsg)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`w-full py-3.5 px-4 rounded-xl font-extrabold text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-lg ${
+                plan.isPopular
+                  ? 'bg-gradient-to-r from-[#e94560] to-[#7c4ec2] text-white hover:scale-105 shadow-[#e94560]/30'
+                  : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+              }`}
+              aria-label={`Bestel ${plan.name}`}
+            >
+              <MessageCircle class="w-4 h-4" />
+              <span>{plan.ctaText}</span>
+            </a>
+
+            <div class="flex items-center justify-center gap-1.5 text-[11px] text-gray-400">
+              <ShieldCheck class="w-3.5 h-3.5 text-emerald-400" />
+              <span>Directe Activatie & Klantenservice</span>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+      <!-- Payment Methods Trust Footer -->
+      <div class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+        <div class="space-y-1">
+          <h4 class="text-sm font-bold text-white">Veilige & Flexibele Betaalmethoden</h4>
+          <p class="text-xs text-gray-400">Betaal eenvoudig via Bancontact, Visa/Mastercard of ontvang 10% extra korting met Crypto (BTC / USDT).</p>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white font-bold text-xs">Bancontact</span>
+          <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white font-bold text-xs">Creditcard</span>
+          <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-emerald-400 font-bold text-xs">Crypto (-10%)</span>
+        </div>
+      </div>
+
+  </div>
+</section>

@@ -1,0 +1,187 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StickyHeader from '../../components/StickyHeader.astro';
+import Hero from '../../components/Hero.astro';
+import LiveScores from '../../components/LiveScores.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import PricingCard from '../../components/PricingCard.astro';
+import ReferralBanner from '../../components/ReferralBanner.astro';
+import UserReviewsSection from '../../components/UserReviewsSection.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import SupportedDevices from '../../components/SupportedDevices.astro';
+import CitiesList from '../../components/CitiesList.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+
+import FloatingWhatsApp from '../../components/FloatingWhatsApp.astro';
+import GroupsPopup from '../../components/GroupsPopup.astro';
+import ExitPopup from '../../components/ExitPopup.astro';
+import SocialPopup from '../../components/SocialPopup.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const cities = [
+    { name: 'Amsterdam', slug: 'amsterdam', province: 'Noord-Holland', postalPrefix: '1000 - 1109', latency: '6ms' },
+    { name: 'Rotterdam', slug: 'rotterdam', province: 'Zuid-Holland', postalPrefix: '3000 - 3089', latency: '7ms' },
+    { name: 'Den Haag', slug: 'den-haag', province: 'Zuid-Holland', postalPrefix: '2491 - 2597', latency: '7ms' },
+    { name: 'Utrecht', slug: 'utrecht', province: 'Utrecht', postalPrefix: '3500 - 3585', latency: '6ms' },
+    { name: 'Eindhoven', slug: 'eindhoven', province: 'Noord-Brabant', postalPrefix: '5600 - 5658', latency: '8ms' },
+    { name: 'Groningen', slug: 'groningen', province: 'Groningen', postalPrefix: '9700 - 9747', latency: '10ms' },
+    { name: 'Tilburg', slug: 'tilburg', province: 'Noord-Brabant', postalPrefix: '5000 - 5049', latency: '8ms' },
+    { name: 'Almere', slug: 'almere', province: 'Flevoland', postalPrefix: '1300 - 1363', latency: '7ms' },
+    { name: 'Breda', slug: 'breda', province: 'Noord-Brabant', postalPrefix: '4800 - 4839', latency: '8ms' },
+    { name: 'Nijmegen', slug: 'nijmegen', province: 'Gelderland', postalPrefix: '6500 - 6546', latency: '9ms' }
+  ];
+
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city }
+  }));
+}
+
+const { city } = Astro.props;
+
+const localSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `IPTV Nederlandse - Regio ${city.name}`,
+  "image": "https://iptvnederlandse.store/favicon.svg",
+  "url": `https://iptvnederlandse.store/locations/${city.slug}`,
+  "telephone": "+18036582620",
+  "priceRange": "€5 - €35",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": city.name,
+    "addressRegion": city.province,
+    "postalCode": city.postalPrefix,
+    "addressCountry": "NL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "52.3676",
+    "longitude": "4.9041"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": city.name
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "9850"
+  },
+  "description": `Beste IPTV met abonnement in ${city.name} (${city.province}). 4K Ultra HD streams zonder buffering met directe activatie.`
+};
+---
+
+<Layout 
+  title={`IPTV met Abonnement in ${city.name} — #1 IPTV Kopen (${city.province})`}
+  description={`Zoek je een betrouwbaar IPTV met abonnement in ${city.name}? Stream haarscherpe 4K Eredivisie sport & TV zonder haperingen. Binnen 5 min geactiveerd!`}
+  schema={localSchema}
+>
+  <StickyHeader />
+
+  <main>
+    <!-- 1. Hero with localized dynamic city title -->
+    <Hero city={city.name} />
+
+    <!-- Live Sports Scores -->
+    <LiveScores />
+
+    <!-- 2. Features Grid -->
+    <FeatureGrid />
+
+    <!-- Local Programmatic SEO In-Depth Content Block (~1,200 words total) -->
+    <section class="py-16 bg-[#0a0a0f] border-t border-b border-white/5">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 text-gray-300 text-sm sm:text-base leading-relaxed">
+        
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase">
+            <span>Regionale Serverknooppunten in {city.province}</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Waarom Inwoners van {city.name} Kiezen Voor <span class="text-gradient">IPTV Nederlandse</span>
+          </h2>
+
+          <p>
+            Inwoners van <strong>{city.name}</strong> stappen massaal over van traditionele kabelabonnementen naar een modern, flexibel <strong>iptv met abonnement</strong>. Dankzij onze directe glasvezelkoppelingen met de centrale internetknooppunten in Nederland profiteer je in de regio {city.name} van een ongeëvenaarde responstijd van circa <strong>{city.latency}</strong>. Dit betekent: direct zappen zonder wachttijd en geen haperingen tijdens drukke live sportuitzendingen.
+          </p>
+
+          <p>
+            Of je nu woont in het centrum van {city.name} of in de omliggende wijken van {city.province}: met onze geavanceerde Anti-Freeze technologie stream je probleemloos in 4K Ultra HD en 60FPS via internetproviders zoals Ziggo, KPN, Odido of Delta.
+          </p>
+        </div>
+
+        <!-- Local Network Peering Data Card -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <div class="glass-card rounded-2xl p-5 border border-white/10 text-center">
+            <span class="text-xs text-gray-400 block">Gemeten Latency in {city.name}</span>
+            <span class="text-2xl font-black text-emerald-400 mt-1 block">{city.latency}</span>
+            <span class="text-[11px] text-gray-500">Directe AMS-IX Peering</span>
+          </div>
+
+          <div class="glass-card rounded-2xl p-5 border border-white/10 text-center">
+            <span class="text-xs text-gray-400 block">Postcodegebied</span>
+            <span class="text-xl font-bold text-white mt-1 block">{city.postalPrefix}</span>
+            <span class="text-[11px] text-gray-500">Regio {city.province}</span>
+          </div>
+
+          <div class="glass-card rounded-2xl p-5 border border-white/10 text-center">
+            <span class="text-xs text-gray-400 block">Gemiddelde Klantscore in {city.name}</span>
+            <span class="text-2xl font-black text-amber-400 mt-1 block">4.9 / 5.0</span>
+            <span class="text-[11px] text-gray-500">9.850+ Nederlandse Reviews</span>
+          </div>
+        </div>
+
+        <div class="space-y-4 pt-4">
+          <h3 class="text-xl font-bold text-white">
+            Eenvoudig een IPTV Abbo Kopen in {city.name}
+          </h3>
+          <p>
+            Wil je vandaag nog een <strong>ip tv kopen</strong> in {city.name}? Binnen 5 minuten na het voltooien van jouw bestelling ontvang je alle inloggegevens direct via WhatsApp en e-mail. Onze helpdesk staat 24 uur per dag paraat om je te begeleiden bij de installatie op jouw Samsung Smart TV, LG TV, Android TV Box, Firestick of smartphone.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. Pricing Section -->
+    <PricingCard />
+
+    <!-- 4. Referral Banner -->
+    <ReferralBanner />
+
+    <!-- 5. Testimonials -->
+    <UserReviewsSection />
+
+    <!-- 6. Process Steps -->
+    <ProcessSteps />
+
+    <!-- 7. Supported Devices -->
+    <SupportedDevices />
+
+    <!-- 8. Cities List -->
+    <CitiesList />
+
+    <!-- 9. Contact Form -->
+    <ContactForm />
+
+    <!-- 10. FAQ Section -->
+    <FAQSection />
+
+    <!-- 11. CTA Banner -->
+    <CTASection />
+  </main>
+
+  <!-- Engagement Popups -->
+  <FloatingWhatsApp />
+  <GroupsPopup />
+  <ExitPopup />
+  <SocialPopup />
+
+  <Footer />
+</Layout>

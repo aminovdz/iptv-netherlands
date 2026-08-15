@@ -1,0 +1,161 @@
+---
+import { Star, CheckCircle2, ShieldCheck, ThumbsUp, Quote } from 'lucide-astro';
+
+const reviews = [
+  {
+    name: "Jeroen van Dijk",
+    city: "Utrecht",
+    plan: "12 Maanden + IBO Player",
+    rating: 5,
+    date: "2 dagen geleden",
+    title: "Eindelijk een IPTV aanbieder die echt niet hapert!",
+    comment: "Ik was sceptisch na slechte ervaringen bij andere aanbieders, maar IPTV Nederlandse overtreft alle verwachtingen. De Eredivisie wedstrijden streamen super vloeiend in 4K 60fps. Ook de gratis activatie van IBO Player op mijn LG OLED TV was binnen 5 minuten geregeld via WhatsApp!"
+  },
+  {
+    name: "Dennis Vermeulen",
+    city: "Rotterdam",
+    plan: "12 Maanden Pakket",
+    rating: 5,
+    date: "Vorige week",
+    title: "Beste prijs-kwaliteit in Nederland",
+    comment: "Voor €35 per jaar is dit een absolute no-brainer. De beeldkwaliteit is haarscherp en de elektronische programmagids (EPG) klopt altijd. De activatie ging vlekkeloos en de M3U link werkte meteen in TiviMate op mijn Firestick."
+  },
+  {
+    name: "Sander & Lisa",
+    city: "Amsterdam",
+    plan: "6 Maanden Pakket",
+    rating: 5,
+    date: "2 weken geleden",
+    title: "Geweldige Nederlandstalige klantenservice",
+    comment: "Ik had even hulp nodig met het instellen van de Xtream Codes op onze Samsung Smart TV in de slaapkamer. Binnen 2 minuten reageerde de helpdesk via WhatsApp en kregen we duidelijke foto's en instructies. Top service!"
+  },
+  {
+    name: "Mark de Jong",
+    city: "Eindhoven",
+    plan: "12 Maanden + IBO Player",
+    rating: 5,
+    date: "3 weken geleden",
+    title: "Anti-freeze technologie werkt fantastisch",
+    comment: "Tijdens de Champions League finales en drukke zondagmiddagen bleef het beeld 100% stabiel zonder buffering. Zeker een aanrader voor iedere sportliefhebber."
+  },
+  {
+    name: "Anouk Bakker",
+    city: "Groningen",
+    plan: "3 Maanden Pakket",
+    rating: 5,
+    date: "1 maand geleden",
+    title: "Snel geactiveerd en overzichtelijk",
+    comment: "Begonnen met een kwartaalpakket om te testen. Het werkt zo fijn dat ik bij de verlenging direct voor het jaarabonnement ga om de gratis IBO Player bonus mee te pakken."
+  },
+  {
+    name: "Tim van Leeuwen",
+    city: "Den Haag",
+    plan: "12 Maanden Pakket",
+    rating: 5,
+    date: "1 maand geleden",
+    title: "Geen schotel of kastje meer nodig",
+    comment: "Al onze televisies in huis draaien nu via deze IPTV service. Schone interface, snelle zaptijden en betrouwbare server uptime."
+  }
+];
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "IPTV met Abonnement - IPTV Nederlandse",
+  "image": "https://iptvnederlandse.store/favicon.svg",
+  "description": "Premium IPTV met abonnement in Nederland. 4K/FHD streaming zonder haperingen met instant activatie.",
+  "brand": {
+    "@type": "Brand",
+    "name": "IPTV Nederlandse"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "9850",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "lowPrice": "5.00",
+    "highPrice": "35.00",
+    "priceCurrency": "EUR",
+    "offerCount": "4"
+  }
+};
+---
+
+<section id="reviews" class="py-20 md:py-28 relative overflow-hidden bg-[#0d0d14]">
+  <!-- Injected Product & AggregateRating Schema -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400 uppercase tracking-wider">
+        <ThumbsUp class="w-3.5 h-3.5" />
+        Geverifieerde Ervaringen
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+        Wat Zeggen Onze <span class="text-gradient">Nederlandse Klanten?</span>
+      </h2>
+      <p class="text-base sm:text-lg text-gray-400">
+        Meer dan 9.850 actieve abonnees vertrouwen dagelijks op de stabiliteit en service van IPTV Nederlandse.
+      </p>
+
+      <!-- Rating summary card -->
+      <div class="inline-flex flex-wrap items-center justify-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 mt-4">
+        <div class="flex items-center gap-1 text-amber-400">
+          <Star class="w-5 h-5 fill-current" />
+          <Star class="w-5 h-5 fill-current" />
+          <Star class="w-5 h-5 fill-current" />
+          <Star class="w-5 h-5 fill-current" />
+          <Star class="w-5 h-5 fill-current" />
+        </div>
+        <span class="text-white font-extrabold text-lg">4.9 / 5.0</span>
+        <span class="text-gray-400 text-xs sm:text-sm">Gebaseerd op 9.850+ geverifieerde reviews</span>
+      </div>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {reviews.map((review) => (
+        <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#7c4ec2]/40 transition-all duration-300 group">
+          <div>
+            <!-- Star Rating & Date -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex text-amber-400">
+                {Array.from({ length: review.rating }).map(() => (
+                  <Star class="w-4 h-4 fill-current" />
+                ))}
+              </div>
+              <span class="text-xs text-gray-500">{review.date}</span>
+            </div>
+
+            <!-- Review Title & Text -->
+            <h3 class="text-base font-bold text-white mb-2.5 group-hover:text-[#d1b3ff] transition-colors">
+              "{review.title}"
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-6">
+              {review.comment}
+            </p>
+          </div>
+
+          <!-- Reviewer Details -->
+          <div class="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div>
+              <span class="text-sm font-bold text-white block">{review.name}</span>
+              <span class="text-xs text-gray-400">{review.city} • <span class="text-[#38bdf8] font-medium">{review.plan}</span></span>
+            </div>
+            <div class="flex items-center gap-1 text-[11px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-1 rounded-md border border-emerald-500/20">
+              <CheckCircle2 class="w-3.5 h-3.5" />
+              <span>Geverifieerd</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

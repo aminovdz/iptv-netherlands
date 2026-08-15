@@ -1,0 +1,147 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: string;
+  schema?: Record<string, any>;
+}
+
+const { 
+  title, 
+  description, 
+  image = '/og-image.webp', 
+  type = 'website',
+  schema 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://iptvnederlandse.store');
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://iptvnederlandse.store/#organization",
+  "name": "IPTV Nederlandse",
+  "url": "https://iptvnederlandse.store",
+  "logo": "https://iptvnederlandse.store/favicon.svg",
+  "description": "Premium IPTV met abonnement in Nederland. 4K/FHD streaming zonder haperingen met instant activatie en 24/7 ondersteuning.",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+18036582620",
+      "contactType": "customer service",
+      "availableLanguage": ["Dutch", "English"],
+      "url": "https://wa.me/18036582620"
+    },
+    {
+      "@type": "ContactPoint",
+      "email": "contact@iptvnederlandse.store",
+      "contactType": "sales",
+      "availableLanguage": ["Dutch", "English"]
+    },
+    {
+      "@type": "ContactPoint",
+      "email": "support@castvera.com",
+      "contactType": "technical support",
+      "availableLanguage": ["Dutch", "English"]
+    }
+  ],
+  "sameAs": [
+    "https://whatsapp.com/channel/0029VayVaLpD8SE3bf8wMY3v",
+    "https://t.me/castvera_com"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://iptvnederlandse.store/#website",
+  "url": "https://iptvnederlandse.store",
+  "name": "IPTV Nederlandse",
+  "description": "Beste IPTV met abonnement in Nederland - Direct IPTV Kopen",
+  "publisher": {
+    "@id": "https://iptvnederlandse.store/#organization"
+  },
+  "inLanguage": "nl-NL"
+};
+---
+
+<!doctype html>
+<html lang="nl" class="scroll-smooth">
+  <head>
+    <BaseHead 
+      title={title} 
+      description={description} 
+      image={image} 
+      canonicalURL={canonicalURL}
+      type={type}
+    />
+    
+    <!-- Base Organization & Website Schema -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    
+    <!-- Specific Page Schema if provided -->
+    {schema && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body class="bg-[#0a0a0f] text-[#f0f0f5] antialiased selection:bg-[#7c4ec2] selection:text-white min-h-screen flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import "tailwindcss";
+
+  @theme {
+    --color-primary: #533483;
+    --color-primary-light: #7c4ec2;
+    --color-primary-hover: #905fe4;
+    --color-secondary: #e94560;
+    --color-secondary-hover: #ff5778;
+    --color-accent: #38bdf8;
+    --color-dark: #0a0a0f;
+    --color-card: #13131a;
+    --color-card-hover: #1a1a24;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-hover: rgba(255, 255, 255, 0.18);
+  }
+
+  /* Custom glassmorphism utilities */
+  .glass-card {
+    background: rgba(19, 19, 26, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card-glow {
+    background: linear-gradient(135deg, rgba(83, 52, 131, 0.15) 0%, rgba(19, 19, 26, 0.85) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(124, 78, 194, 0.3);
+  }
+
+  .glass-nav {
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Text gradient helper */
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #d1b3ff 50%, #e94560 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #d1b3ff 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

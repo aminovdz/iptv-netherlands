@@ -1,0 +1,116 @@
+---
+import { CheckCircle2, ShoppingBag, X, Zap } from 'lucide-astro';
+---
+
+<div 
+  id="social-popup" 
+  class="fixed bottom-6 left-6 z-40 max-w-sm w-full transition-all duration-500 transform translate-y-24 opacity-0 pointer-events-none"
+  aria-live="polite"
+>
+  <div class="glass-card-glow rounded-2xl p-4 border border-white/15 shadow-2xl flex items-center gap-3.5 relative">
+    
+    <!-- User / Order Icon -->
+    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c4ec2] to-[#e94560] p-0.5 flex items-center justify-center shrink-0 shadow-md">
+      <div class="w-full h-full bg-[#0a0a0f] rounded-[10px] flex items-center justify-center">
+        <Zap class="w-5 h-5 text-amber-400" />
+      </div>
+    </div>
+
+    <!-- Purchase Details -->
+    <div class="flex-1 pr-4">
+      <div class="flex items-center gap-1 text-[11px] font-bold text-emerald-400">
+        <CheckCircle2 class="w-3 h-3" />
+        <span>Nieuwe Activatie</span>
+      </div>
+      <p id="social-popup-text" class="text-xs font-bold text-white leading-tight mt-0.5">
+        Jeroen uit Utrecht heeft zojuist 12 Maanden Deal geactiveerd
+      </p>
+      <span id="social-popup-time" class="text-[10px] text-gray-400 block mt-0.5">
+        2 minuten geleden
+      </span>
+    </div>
+
+    <!-- Dismiss Button -->
+    <button 
+      id="close-social-popup"
+      type="button"
+      class="absolute top-2 right-2 text-gray-400 hover:text-white p-1 rounded-md transition-colors"
+      aria-label="Sluit melding"
+    >
+      <X class="w-3.5 h-3.5" />
+    </button>
+
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('social-popup');
+    const textEl = document.getElementById('social-popup-text');
+    const timeEl = document.getElementById('social-popup-time');
+    const closeBtn = document.getElementById('close-social-popup');
+
+    const STORAGE_KEY = 'social_popup_session_24h';
+    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000; // 24 hours in ms
+
+    function isSuppressed() {
+      const lastDismissed = localStorage.getItem(STORAGE_KEY);
+      if (!lastDismissed) return false;
+      const elapsed = Date.now() - parseInt(lastDismissed, 10);
+      return elapsed < TWENTY_FOUR_HOURS;
+    }
+
+    function recordDismissed() {
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    }
+
+    const orders = [
+      { text: "Jeroen uit Utrecht heeft zojuist 12 Maanden + IBO Player geactiveerd", time: "2 minuten geleden" },
+      { text: "Dennis uit Rotterdam heeft het 12 Maanden Jaarpakket besteld", time: "4 minuten geleden" },
+      { text: "Sander uit Amsterdam heeft 6 Maanden Pakket aangeschaft", time: "6 minuten geleden" },
+      { text: "Mark uit Eindhoven heeft 12 Maanden + IBO Player geactiveerd", time: "8 minuten geleden" },
+      { text: "Lisa uit Den Haag heeft 3 Maanden Pakket geactiveerd", time: "11 minuten geleden" },
+      { text: "Bram uit Groningen heeft 12 Maanden Deal besteld", time: "14 minuten geleden" },
+      { text: "Anouk uit Tilburg heeft 12 Maanden Pakket geactiveerd", time: "17 minuten geleden" }
+    ];
+
+    let currentIndex = 0;
+    let isDismissed = isSuppressed();
+
+    function showRandomOrder() {
+      if (isDismissed || isSuppressed() || !popup || !textEl || !timeEl) return;
+
+      const order = orders[currentIndex % orders.length];
+      textEl.textContent = order.text;
+      timeEl.textContent = order.time;
+      currentIndex++;
+
+      popup.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      popup.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+
+      // Hide after 6 seconds
+      setTimeout(() => {
+        if (!isDismissed && popup) {
+          popup.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          popup.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        }
+      }, 6000);
+    }
+
+    if (!isSuppressed()) {
+      // Initial delay of 4 seconds
+      setTimeout(() => {
+        showRandomOrder();
+        // Repeat every 18 seconds
+        setInterval(showRandomOrder, 18000);
+      }, 4000);
+    }
+
+    closeBtn?.addEventListener('click', () => {
+      isDismissed = true;
+      recordDismissed();
+      popup?.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      popup?.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+    });
+  });
+</script>
